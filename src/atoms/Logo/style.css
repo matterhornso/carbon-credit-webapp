@@ -1,0 +1,8 @@
+.logoImage {
+  transition: all ease 0.5s;
+  cursor: pointer;
+}
+.logoImage:hover {
+  filter: saturate(150%);
+  transform: scale(1.05);
+}

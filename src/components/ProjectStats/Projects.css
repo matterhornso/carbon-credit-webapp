@@ -1,0 +1,65 @@
+.stats-row{
+	display: flex;
+	overflow-x: hidden;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.stats-row::-webkit-scrollbar {
+	/* display: none; */
+	height: 10px !important;
+	margin-left:20px;
+	width: 10px !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.stats-row {
+	-ms-overflow-style: none;  
+	scrollbar-width: none;  
+}
+.stats-row:hover   {
+	display: flex;  
+	overflow-x: scroll;
+	margin-bottom: -10px;
+}
+.stats-container{  
+	padding: 20px;
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 8px;
+	color: #000000;
+	min-width: 280px;
+	margin-right: 24px;
+	box-shadow:  0px 5px 25px rgba(0, 0, 0, 0.12) ;
+	margin: 10px;
+}
+.colored-div{
+	width: 80px;
+	height: 80px;
+	border-radius: 20px;
+	/* background-color: #BCE2D2; */
+	border: 3px solid #FFF;
+	/* box-shadow: 1px 1px 2px 2px #CCC ; */
+	/* margin-right: 20px; */
+}
+.stats-value{
+	font-size: 24px;
+	font-weight: 400;
+	color: #C12902
+}
+.stats-title{
+	font-size: 14px;
+	font-weight: 400;
+}
+.content-container {
+	justify-content: space-between;
+	height: max-content;
+	width: 60%;
+}
+.slick-prev, .slick-next {
+	font-size: 15px !important;
+  }
+  
+   .slick-prev:before, .slick-next:before  {
+	content: '' !important;
+  }

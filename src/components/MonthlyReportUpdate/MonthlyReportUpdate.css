@@ -1,0 +1,115 @@
+.tabs-container {
+  width: 100%;
+  overflow: overlay;
+}
+.tabs-container::-webkit-scrollbar {
+  display: none;
+}
+.tabs {
+  display: flex;
+  /* width: fit-content; */
+  overflow-x: auto;
+}
+.tabs::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 10px;
+}
+
+/* Track */
+.tabs::-webkit-scrollbar-track {
+  padding-top: 5px;
+  background: #e1eee8;
+  border-radius: 10px;
+}
+
+/* Handle */
+.tabs::-webkit-scrollbar-thumb {
+  background: #1d4b44;
+}
+
+/* Handle on hover */
+.tabs::-webkit-scrollbar-thumb:hover {
+  background: #388e81;
+}
+.tabs > div:not(:first-child) {
+  margin-left: 6px;
+}
+.tab {
+  width: fit-content;
+  /* background-color: white; */
+  border-radius: 6px 6px 0 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.1px;
+  border-bottom: 3px solid #dae5e1;
+
+  color: #7b9690;
+}
+.selected-tab {
+  white-space: nowrap;
+  /* background-color: white; */
+  color: #1d4b44;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 3px solid #1d4b44;
+  padding: 8px 16px;
+  cursor: pointer;
+  position: relative;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.section-title {
+  width: fit-content;
+  white-space: nowrap;
+  background-color: #daf7f0;
+  color: #1d4b44;
+  border-radius: 6px 6px 0 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  position: relative;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* src/components/IssuanceDataCollection/SectionA3.tsx */
+.table-with-div-heading {
+  /* border: 1px solid #1d4b44; */
+  border-radius: 6px 6px 0 0;
+  padding: 5px 10px;
+  background-color: #bce2d2;
+  flex-direction: 'row';
+  justify-content: 'space-between';
+}
+.table-with-div-td {
+  /* border: 1px solid #1d4b44; */
+  border-radius: 6px 6px 0 0;
+  padding: 5px 10px;
+  background-color: white;
+  flex-direction: 'row';
+}
+.table-with-div-td_green {
+  /* border: 1px solid #1d4b44; */
+  border-radius: 6px 6px 0 0;
+  padding: 5px 10px;
+  background-color: #cce8e1;
+  flex-direction: 'row';
+}
+.select_option_border_contain {
+  background: 'white';
+  color: '#006B5E';
+  border: '0px solid white';
+}

@@ -1,0 +1,19 @@
+#draftPDDCompilation-tenPointthree .tc-row .tc-cell:nth-of-type(1) {
+    background-color: #8BD3DC ;
+    border:1px solid #ffffff;
+    text-align: start ;
+  }
+  
+  #draftPDDCompilation-tenPointthree .tc-row .tc-cell:nth-of-type(2) {
+    background-color: #E6F5F7 ;
+    border:1px solid #ffffff;
+  }
+  #draftPDDCompilation-tenPointthree .tc-wrap {
+    border-color: none;
+  }
+  #draftPDDCompilation-tenPointthree .tc-row{
+    grid-template-columns: 33% 67% ;
+  }
+  #draftPDDCompilation-tenPointthree .tc-add-row,.tc-add-column{
+    display: none ;
+  }

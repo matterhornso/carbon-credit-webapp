@@ -1,0 +1,41 @@
+#draftPDDCompilation-onePointsevenPointone .tc-row .tc-cell:nth-of-type(1) {
+    background-color: #8BD3DC !important;
+    border:1px solid #ffffff;
+    text-align: start !important;
+  }
+  
+  #draftPDDCompilation-onePointsevenPointone .tc-row .tc-cell:nth-of-type(2) {
+    background-color: #E6F5F7 !important;
+    border:1px solid #ffffff;
+  }
+  #draftPDDCompilation-onePointsevenPointone .tc-wrap {
+    border-color: none !important;
+  }
+  #draftPDDCompilation-onePointsevenPointone .tc-row{
+    grid-template-columns: 30% 70% !important;
+  }
+  #draftPDDCompilation-onePointsevenPointone .tc-add-row,.tc-add-column{
+    display: none !important;
+  }
+
+  /**/
+  #draftPDDCompilation-onePointsevenPointtwo  .tc-row .tc-cell:nth-of-type(1) {
+    background-color: #8BD3DC !important;
+    border:1px solid #ffffff;
+    text-align: start !important;
+  }
+
+  #draftPDDCompilation-onePointsevenPointtwo .tc-row .tc-cell:nth-of-type(2) {
+    background-color: #E6F5F7 !important;
+    border:1px solid #ffffff;
+  }
+
+  #draftPDDCompilation-onePointsevenPointtwo .tc-wrap {
+    border-color: none !important;
+  }
+  #draftPDDCompilation-onePointsevenPointtwo .tc-row{
+    grid-template-columns: 30% 70% !important;
+  }
+  #draftPDDCompilation-onePointsevenPointtwo .tc-add-row,.tc-add-column{
+    display: none !important;
+  }

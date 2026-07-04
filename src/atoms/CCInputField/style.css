@@ -1,0 +1,20 @@
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color:#B6BDBE !important;
+  border-width:0.5px !important;
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink{
+  transform:translate(14px,-9px) scale(0.75)  !important;
+  color:#01717F !important;
+}
+.MuiInputLabel-outlined{
+  transform:translate(14px,15.5px) scale(1) !important;
+  color:#0D0E0E !important;
+}
+.css-ciig1k-MuiInputBase-input-MuiOutlinedInput-input{
+  height:39px !important;
+}
+
+.makeStyles-clearIndicator-942{
+  background:none !important;
+  cursor:auto !important;
+}

@@ -1,0 +1,10 @@
+.shadow-div {
+  position: sticky;
+  left: 0;
+  top: 0;
+  box-shadow: 0px 0px 20px black;
+  height: '100%';
+  width: '100%';
+  background: #e1eee8;
+  display: block;
+}

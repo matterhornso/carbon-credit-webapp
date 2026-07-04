@@ -1,0 +1,4 @@
+.review-and-comment-scrollbar::-webkit-scrollbar {
+	width: 10px;
+	box-shadow: none;
+}

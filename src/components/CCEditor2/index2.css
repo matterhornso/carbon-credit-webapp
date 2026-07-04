@@ -1,0 +1,75 @@
+/* .custom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custom-table th {
+  background-color: #8bd3dc;
+  border: 1px solid #fff;
+  padding: 8px;
+}
+.custom-table td {
+  background-color: #e6f5f7;
+  border: 1px solid #fff;
+  padding: 8px;
+}
+
+.custom-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+} */
+
+/* ---------------Table Styles----------------- */
+/* .tc-row:first-child {
+  background-color: #8BD3DC;
+}
+.tc-row {
+  background-color: #e6f5f7;
+}
+.tc-cell {
+  padding: 16px;
+  font-weight: 500;
+  border: 1px solid #fff;
+}
+.tc-wrap {
+  border-color: none !important;
+} */
+
+
+#my-box .tc-row .tc-cell:first-child {
+  background-color: #8BD3DC ;
+  border:1px solid #ffffff;
+  text-align: start ;
+}
+
+#my-box .tc-row .tc-cell:last-child {
+  background-color: #E6F5F7 ;
+  border:1px solid #ffffff;
+}
+.tc-wrap {
+  border-color: none ;
+}
+#my-box .tc-row{
+  grid-template-columns: 30% 70%;
+}
+#my-box .tc-add-row,.tc-add-column{
+  display: none;
+}
+
+
+/* ---------------Checkbox Styles----------------- */
+.cdx-checklist__item {
+  background-color: #e6f5f7;
+  padding: 8px;
+  border-radius: 8px;
+  color: #01717f;
+  font-weight: 500;
+}
+.cdx-checklist__item--checked .cdx-checklist__item-checkbox-check svg {
+  border-radius: 4px;
+  background: #029fb3;
+}
+.cdx-checklist__item-checkbox-check {
+  background: #e6f5f7;
+  border: 2px solid #01717f;
+}

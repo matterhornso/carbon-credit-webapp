@@ -1,0 +1,17 @@
+.MuiMenu-root ul{
+  background: linear-gradient(0deg, rgba(1, 113, 127, 0.08) 0%, rgba(1, 113, 127, 0.08) 100%), #EEF3F7;
+  padding:0;
+  height:max-content !important;
+}
+.MuiMenu-root ul li{
+  color:black !important;
+  display: block !important;
+  padding:10px 10px;
+}
+.MuiMenu-root ul li:hover{
+  background-color: rgba(1, 113, 127, 0.12);
+}
+
+.MuiSelect-icon{
+  color:#029FB3 !important;
+}

@@ -1,0 +1,117 @@
+/* .custom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custom-table th {
+  background-color: #8bd3dc;
+  border: 1px solid #fff;
+  padding: 8px;
+}
+.custom-table td {
+  background-color: #e6f5f7;
+  border: 1px solid #fff;
+  padding: 8px;
+}
+
+.custom-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+} */
+
+/* ---------------Table Styles----------------- */
+.tc-row:first-child {
+  background-color: #8bd3dc;
+}
+.tc-row {
+  background-color: #e6f5f7;
+}
+.tc-cell {
+  padding: 16px;
+  font-weight: 500;
+  border: 1px solid #fff;
+}
+#my-box.tc-wrap {
+  border-color: none !important;
+}
+
+/* ---------------Checkbox Styles----------------- */
+.cdx-checklist__item {
+  background-color: #e6f5f7;
+  padding: 8px;
+  border-radius: 8px;
+  color: #01717f;
+  font-weight: 500;
+}
+.cdx-checklist__item--checked .cdx-checklist__item-checkbox-check svg {
+  border-radius: 4px;
+  background: #029fb3;
+}
+.cdx-checklist__item-checkbox-check {
+  background: #e6f5f7;
+  border: 2px solid #01717f;
+}
+
+/* coloring toolbar icons */
+
+.codex-editor path {
+  stroke: #029fb3;
+}
+
+.ce-paragraph[data-placeholder]:empty::before {
+  color: #01717f99;
+}
+
+#projectIntroduction-name .ce-paragraph {
+  padding: 5px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #b6bdbe;
+  width: 100%;
+  font-size: 34px;
+  font-weight: 400;
+  color: #01717f99;
+  margin-left: 10px;
+}
+
+#projectIntroduction-location .ce-paragraph {
+  padding: 5px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #b6bdbe;
+  width: 100%;
+  font-size: 34px;
+  font-weight: 400;
+  color: #01717f99;
+  margin-left: 10px;
+}
+
+#projectIntroduction-area .ce-paragraph {
+  padding: 5px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #b6bdbe;
+  width: 100%;
+  font-size: 34px;
+  font-weight: 400;
+  color: #01717f99;
+  margin-left: 10px;
+}
+#projectIntroduction-name .ce-toolbar__plus{
+  display: none;
+}
+#projectIntroduction-name .ce-toolbar__settings-btn{
+  display: none;
+}
+
+
+#projectIntroduction-location .ce-toolbar__plus{
+  display: none;
+}
+#projectIntroduction-location .ce-toolbar__settings-btn{
+  display: none;
+}
+
+#projectIntroduction-area .ce-toolbar__plus{
+  display: none;
+}
+#projectIntroduction-area .ce-toolbar__settings-btn{
+  display: none;
+}

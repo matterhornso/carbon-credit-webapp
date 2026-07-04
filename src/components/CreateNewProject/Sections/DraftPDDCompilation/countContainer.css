@@ -1,0 +1,15 @@
+
+.unread-count {
+  display: inline-block;
+  width:fit-content;
+  border-radius: 9px;
+  background-color: #F15D5F;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  transition: opacity 0.5s ease; /* Add transition for opacity */
+}
+
+.unread-count.fade-out {
+  opacity: 0;
+}

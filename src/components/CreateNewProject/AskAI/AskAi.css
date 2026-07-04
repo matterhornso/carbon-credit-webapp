@@ -1,0 +1,44 @@
+/* CSS for the parent div */
+.ask-ai-wrapper {
+  width: 100%;
+  box-shadow: 2px 2px 9px rgba(10, 10, 10, 0.2);
+  padding: 14px 8px;
+  border-radius: 6px;
+}
+
+/* CSS for the input field */
+.ask-ai-input {
+  width: 100%;
+  padding: 7px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  box-shadow: none;
+  /*max-height: 400px;
+  overflow-y: scroll;*/
+  /*outline: none;*/
+}
+
+/* CSS for the right arrow icon */
+.ask-ai-icon {
+  /*margin-left: 10px;*/
+  cursor: pointer;
+}
+
+/* CSS for the placeholder color */
+.ask-ai-input::placeholder {
+  color: #01717f;
+}
+
+.option_when_generating_text_with_AI {
+  color: #2b846d;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.ce-popover-item {
+  position: 'absolute';
+}

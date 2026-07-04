@@ -1,0 +1,21 @@
+.sticky-last-column {
+    position: sticky;
+    right: 0;
+    /* box-shadow: 5px 2px 5px red; */
+    /* background: green; */
+}
+.sticky-second-last-column {
+    position: sticky;
+    right: 72px;
+    /* box-shadow: 5px 2px 5px red; */
+    /* background: green; */
+}
+#column + .sticky-last-column:hover  .sticky-second-last-column{
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.16); */
+}
+
+.sticky-first-column{
+    position:sticky;
+    left:0;
+    /* background:red */
+}

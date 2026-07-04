@@ -1,0 +1,18 @@
+.table-header-cell {
+  color: #00201b;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.table-body-cell {
+  color: #00201b;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+#pdfwrapper{
+  display: flex;
+  justify-content: center;
+}

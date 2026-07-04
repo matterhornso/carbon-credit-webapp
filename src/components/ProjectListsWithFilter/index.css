@@ -1,0 +1,34 @@
+.filter-list-container::-webkit-scrollbar {
+	width: 8px;
+	box-shadow: none;
+}
+
+.filter-list-container::-webkit-scrollbar-track {
+	/* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  */
+	border-radius: 10px;
+	background: linear-gradient(180deg, rgba(7, 19, 13, 0.79) 0%, #222926 100%);
+}
+
+.filter-list-container-light::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	/* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  */
+	/* background: #899390; */
+}
+.filter-list-container-light::-webkit-scrollbar {
+	width: 8px;
+	box-shadow: none;
+}
+
+.filter-list-container-light::-webkit-scrollbar-track {
+	/* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  */
+	border-radius: 10px;
+	/* background: #83b99c; */
+
+}
+
+.filter-list-container-light::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	/* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  */
+	/* background: #899390; */
+	/* background: linear-gradient(180deg, rgba(7, 19, 13, 0.79) 0%, #222926 100%); */
+}

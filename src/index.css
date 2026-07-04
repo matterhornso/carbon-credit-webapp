@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Nunito:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nanum+Gothic+Coding&family=Noto+Sans+Gothic&family=Zen+Kaku+Gothic+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Nanum+Gothic+Coding&family=Noto+Sans+Gothic&family=Zen+Kaku+Gothic+Antique&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+::-webkit-scrollbar {
+  /* display: none; */
+  width: 10px;
+  /* box-shadow: 10px 0 15px #B6E3DC; */
+}
+
+::-webkit-scrollbar-track {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: transparent;
+  /* display: none; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b6e3dc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #83b99c;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.td-as-link {
+  color: #0068c6;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Editor JS */
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: unset;
+}
+
+.codex-editor,
+.codex-editor--empty {
+  height: auto;
+  /* max-height: 500px; */
+}
+
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
+}
+
+.image-tool__image {
+  width: 480px;
+  height: 275px;
+}
+.image-tool__caption {
+  color: #01717f;
+  font-size: 12px;
+  border: none;
+  box-shadow: none;
+}
+
+/* for div auto generated in src/components/GenerateProjectWithAIComp/PDDContent/GPTAssistant/GPTResponseParser.tsx */
+.language-html {
+  white-space: break-spaces;
+}
+
+.lato-regular {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lato-bold {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.libre-franklin-normal {
+  font-family: 'Libre Franklin', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.libre-franklin-bold {
+  font-family: 'Libre Franklin', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.libre-franklin-bolder {
+  font-family: 'Libre Franklin', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}

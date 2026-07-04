@@ -1,0 +1,56 @@
+/** input field for text pupose  **/
+#label-input {
+  transition: all 0.1s ease-in-out;
+  color: #0d0e0e;
+  position: absolute;
+  top: 30%;
+  left: 18px;
+  transform: scale(0.95);
+  opacity: 1;
+  pointer-events: none;
+  font-size:16px;
+  font-weight: 400;
+}
+
+.input-base {
+  border-radius: 4px;
+}
+
+#input:focus ~ label#label-input,
+#input:not(:placeholder-shown) ~ #label-input {
+  top: -20%;
+  left: 2px;
+  transform: scale(0.8);
+  background: white;
+  color: #01717f;
+  padding: 0 6px;
+  opacity: 1;
+}
+
+#input {
+  transition: outline 0.2s ease;
+  font-size: 16px;
+  /* outline-color: red; */
+  outline: none;
+  /* border: 1px solid #bbbbbb; */
+  border: 1px solid #B6BDBE;
+  height: 56px;
+  padding: 16px 45px 15px 10px;
+  background-color: #FAFDFA;
+  font-family: Poppins;
+}
+
+#input.invalid{
+ border:1px solid red
+}
+
+.relative {
+  position: relative;
+  width: max-content;
+}
+.adornment {
+  position: absolute;
+  top: 55%;
+  right: 10px; /* Adjust this value based on the desired space from the left edge */
+  transform: translateY(-50%);
+}

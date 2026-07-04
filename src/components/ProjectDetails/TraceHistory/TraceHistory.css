@@ -1,0 +1,26 @@
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.trace-details::-webkit-scrollbar {
+  width: 8px;
+}
+
+.trace-details::-webkit-scrollbar-track {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: transparent;
+}
+
+.trace-details::-webkit-scrollbar-thumb {
+  background: #CCE8E1;
+  border-radius: 10px;
+}
+
+.traceability-trace-circle{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+}

@@ -1,0 +1,22 @@
+<svg width="628" height="335" viewBox="0 0 628 335" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M313.68 329.596V255.845" stroke="#BCE2D2" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M318.14 205.452H309.22C299.627 205.452 291.85 213.201 291.85 222.761V281.794C291.85 291.353 299.627 299.103 309.22 299.103H318.14C327.733 299.103 335.51 291.353 335.51 281.794V222.761C335.51 213.201 327.733 205.452 318.14 205.452Z" stroke="#BCE2D2" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M0 334.152C0 209.362 140.44 108.199 313.68 108.199C486.92 108.199 627.36 209.362 627.36 334.152" fill="url(#paint0_radial_264_2625)"/>
+<path d="M117.8 165.951V92.2" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M122.26 41.8071H113.34C103.747 41.8071 95.9702 49.5567 95.9702 59.1163V118.149C95.9702 127.708 103.747 135.458 113.34 135.458H122.26C131.853 135.458 139.63 127.708 139.63 118.149V59.1163C139.63 49.5567 131.853 41.8071 122.26 41.8071Z" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M572.57 211.65V137.889" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M577.03 87.5063H568.11C558.517 87.5063 550.74 95.2559 550.74 104.815V163.848C550.74 173.408 558.517 181.157 568.11 181.157H577.03C586.623 181.157 594.4 173.408 594.4 163.848V104.815C594.4 95.2559 586.623 87.5063 577.03 87.5063Z" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M453.49 132.359V75.4785" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M456.93 36.6152H450.04C442.645 36.6152 436.65 42.5892 436.65 49.9584V95.4983C436.65 102.868 442.645 108.841 450.04 108.841H456.93C464.325 108.841 470.32 102.868 470.32 95.4983V49.9584C470.32 42.5892 464.325 36.6152 456.93 36.6152Z" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M37.3604 229.029V172.149" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M40.8 133.285H33.91C26.5149 133.285 20.52 139.259 20.52 146.629V192.168C20.52 199.538 26.5149 205.512 33.91 205.512H40.8C48.1951 205.512 54.1901 199.538 54.1901 192.168V146.629C54.1901 139.259 48.1951 133.285 40.8 133.285Z" stroke="#1D4B44" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M208 1H420" stroke="#388E81" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M245 31.8191H382.91" stroke="#388E81" stroke-width="2" stroke-miterlimit="10"/>
+<defs>
+<radialGradient id="paint0_radial_264_2625" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(380.68 58.122) rotate(114.508) scale(303.746 842.704)">
+<stop stop-color="#F15D5F"/>
+<stop offset="0.496528" stop-color="#1D4B44"/>
+<stop offset="1" stop-color="#2A2C2B"/>
+</radialGradient>
+</defs>
+</svg>
