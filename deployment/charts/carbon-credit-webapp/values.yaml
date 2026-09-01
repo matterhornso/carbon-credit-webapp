@@ -45,3 +45,11 @@ autoscaling:
 podAntiAffinity:
   enabled: true
 
+
+# nginx serving a static bundle - modest footprint.
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    memory: 256Mi
