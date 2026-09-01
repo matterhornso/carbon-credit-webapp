@@ -43,6 +43,7 @@ import { BLOCKCHAIN_STATUS } from '../../config/constants.config'
 import { useRegistry } from '../../hooks/useRegistry'
 import { createSearchParams } from 'react-router-dom'
 import { useWallet } from '../../hooks/useWallet'
+import { handleApiError } from '../../utils/errorHandler'
 
 declare let window: any
 
@@ -134,7 +135,7 @@ const RegistryReviewReport = () => {
 
         setpdfURL(pdfObjectURL)
       } catch (err) {
-        console.log('Error in fileUploadCalls.getFile api : ', err)
+        handleApiError(err, { action: 'fileUploadCalls.getFile' })
       } finally {
         setPDFLoading(false)
       }

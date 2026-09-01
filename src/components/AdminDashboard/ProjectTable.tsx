@@ -174,7 +174,7 @@ const ProjectTable: FC<ProjectTableProps> = ({ loading }) => {
               if (item?.project_status === 1200) {
                 await updateAdminStatus(item?.uuid)
               }
-              navigate(pathNames.ADMIN_DRAFT_EDIT, {
+              navigate(pathNames.PROJECT_DETAILS, {
                 state: { uuid: item?.uuid },
               })
             }}

@@ -10,6 +10,7 @@ import { getLocalItem } from '../../utils/Storage'
 import { authCalls } from '../../api/authCalls'
 import ResendOTPModal from './ResendOTPModal'
 import LoaderOverlay from '../../components/LoderOverlay'
+import { handleApiError } from '../../utils/errorHandler'
 
 const StepOneTwoFa = (props: TwoFaProps) => {
   const uuid = getLocalItem('uuid')
@@ -58,9 +59,7 @@ const StepOneTwoFa = (props: TwoFaProps) => {
           alert('Please enter valid OTP')
         }
       })
-      .catch((err) => {
-        console.log('Error in authCalls.verifyOtp api : ', err)
-      })
+      .catch((err) => handleApiError(err, { action: 'authCalls.verifyOtp' }))
       .finally(() => {
         setLoading(false)
       })

@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import React from 'react'
 import { shallowEqual } from 'react-redux'
 import App from './App'
+import ErrorBoundary from './components/ErrorBoundary'
 import { ErrorProvider } from './context/ErrorController'
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks'
 import { setThroughIFrame } from './redux/Slices/appSlice'
@@ -43,7 +44,10 @@ const Main = (props: Props) => {
     <ErrorProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App />
+        {/* Inside ThemeProvider so the recovery screen is themed. */}
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </ThemeProvider>
     </ErrorProvider>
   ) : (

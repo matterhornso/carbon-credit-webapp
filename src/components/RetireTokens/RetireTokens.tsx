@@ -46,6 +46,7 @@ import {
   setSecondaryText,
 } from '../../redux/Slices/blockchainStatusModalSlice'
 import { BLOCKCHAIN_STATUS } from '../../config/constants.config'
+import { handleApiError } from '../../utils/errorHandler'
 
 // declare let window: any
 
@@ -127,7 +128,7 @@ const RetireTokens = (props: RetireTokensProps) => {
         setTokenBalanceLoading(false)
       }
     } catch (err) {
-      console.log('Error in eventsCalls.getTokenByProjectUUID api ~ ', err)
+      handleApiError(err, { action: 'eventsCalls.getTokenByProjectUUID' })
     } finally {
       setProjectTokensLoading(false)
     }

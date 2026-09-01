@@ -21,6 +21,7 @@ import TransactionHistoryTable from './TransactionHistory'
 import WithdrawPopup from './WithdrawPopup'
 import LoaderOverlay from '../../components/LoderOverlay'
 import { useMarketPlaceSell } from '../../hooks/useMarketPlaceSell'
+import { handleApiError } from '../../utils/errorHandler'
 // import { getBalanceOnExchange } from '../../utils/Marketplace/marketplaceSellFlow.util'
 const stats = [
   {
@@ -116,10 +117,7 @@ const IssuerWallet = (props: IssuerWalletProps) => {
         dispatch(setAllBankDetailsList(res?.data))
         setAllBankAccount(res?.data)
       })
-      .catch((error) => {
-        console.log('error', error)
-        setLoading(false)
-      })
+      .catch((error) => handleApiError(error, { action: 'IssuerWallet:120' }))
   }, [])
 
   const onSaveAccountDetails = () => {
@@ -210,7 +208,7 @@ const IssuerWallet = (props: IssuerWalletProps) => {
       const bal = Number(createProjectRes.toString()) * 10 ** -18
       setVCOOnSale(bal)
     } catch (error) {
-      console.log('Error : ', error)
+      handleApiError(error, { action: 'IssuerWallet.tokenContractCalls' })
     } finally {
       setVCOLoading(false)
     }
@@ -227,7 +225,7 @@ const IssuerWallet = (props: IssuerWalletProps) => {
         }
       }
     } catch (error) {
-      console.log('Error : ', error)
+      handleApiError(error, { action: 'IssuerWallet.getVCOAvailabelForSale' })
     } finally {
       setVCOAvailableFoSaleLoading(false)
     }

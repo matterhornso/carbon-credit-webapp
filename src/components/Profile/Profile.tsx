@@ -44,6 +44,7 @@ import BlockchainCalls from '../../blockchain/Blockchain'
 import isAlpha from 'validator/lib/isAlpha'
 import { setWalletAdded } from '../../redux/Slices/walletSlice'
 import { useTokenRetire } from '../../hooks/useTokenRetire'
+import { handleApiError } from '../../utils/errorHandler'
 interface ProfileProps {}
 const statsIssuer = [
   {
@@ -144,7 +145,7 @@ const Profile: FC<ProfileProps> = (props) => {
         setSelectedRole(roles[0]?.value)
         setTypeOptions(roles)
       })
-      .catch((e) => console.log('Error in department.getDepartment api :', e))
+      .catch((e) => handleApiError(e, { action: 'department.getDepartment' }))
   }
 
   useEffect(() => {
@@ -265,7 +266,7 @@ const Profile: FC<ProfileProps> = (props) => {
         }
       }
     } catch (error) {
-      console.log('Error : ', error)
+      handleApiError(error, { action: 'Profile.getVCOAvailabelForSale' })
     } finally {
       setLoading(false)
     }
@@ -288,7 +289,7 @@ const Profile: FC<ProfileProps> = (props) => {
         apiData = res?.data
       }
     } catch (err) {
-      console.log('Error in buyerCalls.getStats api : ', err)
+      handleApiError(err, { action: 'buyerCalls.getStats' })
     } finally {
       setLoading(false)
     }

@@ -9,6 +9,7 @@ import CCDocViewer from '../CCDocViewer'
 import { fileUploadCalls } from '../../api/fileUpload.api'
 import { Colors, Images } from '../../theme'
 import { IMAGE_SIZE_PREFIXES } from '../../config/constants.config'
+import { handleApiError } from '../../utils/errorHandler'
 
 declare let window: any
 
@@ -44,10 +45,7 @@ const CCFileViewer: FC<CCFileViewerProps> = (props) => {
         })
       }
     } catch (error) {
-      console.log(
-        '🚀 ~ file: SliderComponent.tsx ~ line 59 ~ getImages ~ error',
-        error
-      )
+      handleApiError(error, { action: 'SliderComponent.tsx' })
     } finally {
       // setLoading(false)
     }

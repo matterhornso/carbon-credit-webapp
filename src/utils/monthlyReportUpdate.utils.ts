@@ -20,6 +20,7 @@ import {
   checkingMandatoryFields,
   checkMandatoryFieldsArrayObjects,
 } from './newProject.utils'
+import { handleApiError } from './errorHandler'
 const dispatch = store.dispatch
 
 export const moveToNextSection = async (
@@ -72,7 +73,7 @@ export const moveToNextSection = async (
         alert(res?.error)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
     }
   }
 
@@ -119,7 +120,7 @@ export const moveToNextSection = async (
         alert(res?.error)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
     }
   }
 
@@ -227,7 +228,7 @@ export const moveToNextSection = async (
         alert(res?.error)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
     }
   }
 
@@ -283,7 +284,7 @@ export const moveToNextSection = async (
         alert(res?.error)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
     }
   }
 
@@ -359,7 +360,7 @@ export const moveToNextSection = async (
         alert(res?.error)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
     }
   }
 
@@ -527,7 +528,7 @@ export const moveToNextSection = async (
         alert(res?.error)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
     }
   }
 }
@@ -549,7 +550,7 @@ const getProjectDetails = async (projectID: string) => {
       alert(res?.error)
     }
   } catch (e) {
-    console.log('Error in dataCollectionCalls.getProjectById api ~ ', e)
+    handleApiError(e, { action: 'dataCollectionCalls.getProjectById' })
   } finally {
     dispatch(setToMoveSectionIndex(false))
     dispatch(setLoading(false))

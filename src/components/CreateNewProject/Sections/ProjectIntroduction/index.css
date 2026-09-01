@@ -1,6 +1,0 @@
-input::placeholder {
-  color: rgba(1, 113, 127, 0.6);
-}
-input:focus {
-  outline: none;
-}

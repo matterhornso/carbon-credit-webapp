@@ -50,11 +50,9 @@ export const pathNames = {
   PDF: '/pdf',
   ALL_PROJECTS: '/all-projects',
   SELECT_REGISTRY: '/select-registry',
-  CREATE_NEW_PROJECT: '/create-new-project',
-  ADMIN_DRAFT_EDIT: '/admin-draft-edit',
-  REGISTRY_PDF_REVIEW: '/registry-pdf-review',
-  GENERATE_PROJECT_WITH_AI: '/generate-project-with-ai',
   FINAL_PDF: '/final-pdf/:id',
+  ORIGINATION_NEW: '/origination',
+  ORIGINATION: '/origination/:projectId',
   CARBON_CALCULATOR: '/carbon_calculator',
 }
 

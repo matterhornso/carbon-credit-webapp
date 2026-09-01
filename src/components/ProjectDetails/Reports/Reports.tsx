@@ -9,6 +9,7 @@ import CCTableSkeleton from '../../../atoms/CCTableSkeleton'
 import LimitedText from '../../../atoms/LimitedText/LimitedText'
 import { dataCollectionCalls } from '../../../api/dataCollectionCalls'
 import { PROJECT_ALL_STATUS } from '../../../config/constants.config'
+import { handleApiError } from '../../../utils/errorHandler'
 
 let headerIndex = 0
 
@@ -68,7 +69,7 @@ const Reports = (props: any) => {
         setProjectData(res?.data)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.getProjectById api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.getProjectById' })
     } finally {
       setLoading(false)
     }

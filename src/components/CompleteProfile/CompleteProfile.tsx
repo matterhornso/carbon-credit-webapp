@@ -20,6 +20,7 @@ import ProfileCompletion from '../Projects/ProfileCompletion'
 import IsssuerCompleteProfile from './IsssuerCompleteProfile'
 import LoaderOverlay from '../LoderOverlay'
 import { getLocalItem, setLocalItem } from '../../utils/Storage'
+import { handleApiError } from '../../utils/errorHandler'
 
 const CompleteProfile = () => {
   const navigate = useNavigate()
@@ -73,7 +74,7 @@ const CompleteProfile = () => {
         dispatch(setProfilePercentage(100))
       }
     } catch (err) {
-      console.log('Error in USER.updateUserInfo api ~ ', err)
+      handleApiError(err, { action: 'USER.updateUserInfo' })
     }
   }
 
@@ -91,7 +92,7 @@ const CompleteProfile = () => {
         navigate(pathNames.DASHBOARD)
       }
     } catch (err) {
-      console.log('Error in USER.getUserInfo api ~ ', err)
+      handleApiError(err, { action: 'USER.getUserInfo' })
     }
   }
 

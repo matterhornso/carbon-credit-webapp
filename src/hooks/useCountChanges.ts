@@ -1,6 +1,7 @@
 import { shallowEqual } from 'react-redux'
 import { useAppSelector } from './reduxHooks'
 import { ProjectDraftCalls } from '../api/projectDraftCalls.api'
+import { handleApiError } from '../utils/errorHandler'
 
 export function useCountChanges() {
   const unattendedAdminChangesArray = useAppSelector(
@@ -46,7 +47,7 @@ export function useCountChanges() {
       )
       return res
     } catch (error) {
-      console.log('error came while marking update as read in the 2.3', error)
+      handleApiError(error, { action: 'useCountChanges.markUpdateAsRead' })
     }
   }
   return { getTotalCount, markUpdateAsRead }

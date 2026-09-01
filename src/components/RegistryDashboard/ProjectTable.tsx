@@ -199,7 +199,7 @@ const ProjectTable: FC<ProjectTableProps> = ({ loading }) => {
               },
             }}
             onClick={async () => {
-              navigate(pathNames.REGISTRY_PDF_REVIEW, {
+              navigate(pathNames.REGISTRY_REVIEW_REPORT, {
                 state: { uuid: item?.uuid },
               })
             }}

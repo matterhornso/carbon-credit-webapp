@@ -8,6 +8,7 @@ import {
 
 import { getLocalItem } from '../utils/Storage'
 import { useAppDispatch, useAppSelector } from './reduxHooks'
+import { handleApiError } from '../utils/errorHandler'
 
 export function useComment() {
   const dispatch = useAppDispatch()
@@ -80,7 +81,7 @@ export function useComment() {
       const res = await commentsCalls.getComments(urlParam)
       return res?.data
     } catch (err) {
-      console.log('Error in  commentsCalls.getComments api ~ ', err)
+      handleApiError(err, { action: 'commentsCalls.getComments' })
     }
   }
 
@@ -135,7 +136,7 @@ export function useComment() {
         dispatch(setComment(''))
       }
     } catch (err) {
-      console.log('Error in commentsCalls.createComment api ~ ', err)
+      handleApiError(err, { action: 'commentsCalls.createComment' })
     }
   }
 
@@ -150,7 +151,7 @@ export function useComment() {
         getComments()
       }
     } catch (e) {
-      console.log('Error in commentsCalls.updateComment api ~ ', e)
+      handleApiError(e, { action: 'commentsCalls.updateComment' })
     }
   }
 

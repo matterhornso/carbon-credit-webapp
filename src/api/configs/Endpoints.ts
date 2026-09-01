@@ -29,6 +29,10 @@ export const URL_PATH = {
     login: ENDPOINTS.authServiceURL + '/auth/login',
     getCaptcha: ENDPOINTS.authServiceURL + '/auth/getCaptcha',
     verifyNewUser: ENDPOINTS.authServiceURL + '/auth/verifyNewUser',
+    // The actual login-OTP step (distinct from verifyNewUser above, which is
+    // an unrelated new-account-email-verification path the register flow
+    // owns). auth-service's real route is `/auth/verify-otp`.
+    verifyLoginOtp: ENDPOINTS.authServiceURL + '/auth/verify-otp',
     resendOTP: ENDPOINTS.authServiceURL + '/auth/resend-otp',
     verifyToken: ENDPOINTS.authServiceURL + '/auth/verifyToken',
   },
@@ -36,6 +40,10 @@ export const URL_PATH = {
     projectCreate: ENDPOINTS.carbonServiceURL + '/project/create',
     getAllProjects: ENDPOINTS.carbonServiceURL + '/project/getAllProjects',
     getProjectById: ENDPOINTS.carbonServiceURL + '/project/getProjectById',
+    selectMethodology: ENDPOINTS.carbonServiceURL + '/project/selectMethodology',
+    submitIntake: ENDPOINTS.carbonServiceURL + '/project/submitIntake',
+    checkApplicability: ENDPOINTS.carbonServiceURL + '/project/checkApplicability',
+    transition: ENDPOINTS.carbonServiceURL + '/project/transition',
     updateTx: ENDPOINTS.carbonServiceURL + '/project/updateTx',
     getIssuerProjectDashboardStats:
       ENDPOINTS.carbonServiceURL + '/project/getIssuerProjectDashboardStats',
@@ -219,5 +227,21 @@ export const URL_PATH = {
   },
   carbonCalculator: {
     getCalculatedValues: 'https://35.202.232.30:80/calc_carbon_credit',
+  },
+  methodology: {
+    list: ENDPOINTS.carbonServiceURL + '/methodology/list',
+    getByCode: ENDPOINTS.carbonServiceURL + '/methodology/getByCode',
+  },
+  generation: {
+    generateSection: ENDPOINTS.carbonServiceURL + '/generation/generateSection',
+    generateAll: ENDPOINTS.carbonServiceURL + '/generation/generateAll',
+    refineSection: ENDPOINTS.carbonServiceURL + '/generation/refineSection',
+    updateSection: ENDPOINTS.carbonServiceURL + '/generation/updateSection',
+    getCaseDocument: ENDPOINTS.carbonServiceURL + '/generation/getCaseDocument',
+    generateCoverNote: ENDPOINTS.carbonServiceURL + '/generation/generateCoverNote',
+  },
+  attachment: {
+    upload: ENDPOINTS.carbonServiceURL + '/attachment/upload',
+    listByProject: ENDPOINTS.carbonServiceURL + '/attachment/listByProject',
   },
 }

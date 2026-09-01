@@ -4,6 +4,7 @@ import BlockchainCalls from "../blockchain/Blockchain";
 import { setAccountAddress, setConnected, setLoadWallet, setMetamask, setAlertMessage, setLoadWalletAlert, resetWallet, setAccountAddressToConnectWith, setShowAddMetaMaskAccountModal, setAccountBalance, setWalletAdded } from '../redux/Slices/walletSlice'
 import { getLocalItem, setLocalItem } from "../utils/Storage";
 import { useAppDispatch } from './reduxHooks'
+import { handleApiError } from '../utils/errorHandler'
 declare let window: any
 
 export function useBlockchain() {
@@ -140,9 +141,7 @@ export function useBlockchain() {
                         alert(res?.data?.error)
                     }
                 })
-                .catch((e) =>
-                    console.log('error checkMetamaskAvailability promise :', e)
-                )
+                .catch((e) => handleApiError(e, { action: 'checkMetamaskAvailability promise', silent: true }))
         } else {
             return false
         }
@@ -171,7 +170,7 @@ export function useBlockchain() {
                 }
             }
         } catch (error) {
-            console.log('error USER.updateUserInfo api :', error)
+          handleApiError(error, { action: 'USER.updateUserInfo' })
         }
     }
 

@@ -1,7 +1,32 @@
 import { Box, Divider, Typography } from '@mui/material'
 import React from 'react'
 import { Images } from '../../../theme'
-import { SECTION_LIST } from '../../../config/generateProjectWIthAiConfig'
+
+// Table-of-contents subtitles for the Project Description section. Previously
+// sourced from generateProjectWIthAiConfig's SECTION_LIST (the legacy
+// OpenAI-Assistants config, since removed); inlined here since this is the
+// only surviving consumer and it only needs the section-title strings.
+const PROJECT_DESCRIPTION_SUBTITLES = [
+  '1.1 Summary Description of the Project',
+  '1.2 Audit History',
+  '1.3 Sectoral Scope and Project Type',
+  '1.4 Project Eligibility',
+  '1.5 Project Design',
+  '1.6 Project Proponent',
+  '1.7 Other Entities Involved in the Project',
+  '1.8 Ownership',
+  '1.9 Project Start Date',
+  '1.10 Project Crediting Period',
+  '1.11 Project Scale and Estimated GHG Emission Reductions or Removals',
+  '1.12 Description of Project Activity',
+  '1.13 Project Location',
+  '1.14 Conditions Prior to Project Initiation',
+  '1.15 Compliance with Laws, Statutes and Other Regulatory Frameworks',
+  '1.16 Double Counting and Participation under other GHG Programs',
+  '1.17 Double Claiming, Other Forms of Credit, and Scope 3 Emissions',
+  '1.18 Sustainable Development Contributions',
+  '1.19 Additional Information relevant to the project',
+]
 
 const ThirdPage = () => {
   const pageName = 'Table of Contents'
@@ -31,7 +56,7 @@ const ThirdPage = () => {
       //   '1.16 Eligibility criteria for Grouped Project',
       //   '1.17 Additional Information',
       // ],
-      subTitles: SECTION_LIST.map((row: any) => row?.value),
+      subTitles: PROJECT_DESCRIPTION_SUBTITLES,
     },
   ]
 

@@ -46,6 +46,7 @@ import {
   setSecondaryText,
   setSuccessFunction,
 } from '../redux/Slices/blockchainStatusModalSlice'
+import { handleApiError } from '../utils/errorHandler'
 
 export function useMarket() {
   const dispatch = useAppDispatch()
@@ -118,7 +119,7 @@ export function useMarket() {
         dispatch(setINRTokenAddress(res?.data?.INR_token_address))
       }
     } catch (err) {
-      console.log('Error in eventsCalls.getTokenByProjectUUID api ~ ', err)
+      handleApiError(err, { action: 'eventsCalls.getTokenByProjectUUID' })
     } finally {
       dispatch(setProjectsTokenLoading(false))
     }
@@ -136,10 +137,7 @@ export function useMarket() {
         return res
       }
     } catch (err) {
-      console.log(
-        'Error in transactionCalls.getAccountAndExchangeDetails api ~ ',
-        err
-      )
+      handleApiError(err, { action: 'transactionCalls.getAccountAndExchangeDetails' })
     } finally {
       dispatch(setTokenBalanceLoading(false))
     }
@@ -170,7 +168,7 @@ export function useMarket() {
         dispatch(setSellOrdersList(ordersList))
       }
     } catch (err) {
-      console.log('Error in marketplaceCalls.getSellOrder api : ', err)
+      handleApiError(err, { action: 'marketplaceCalls.getSellOrder' })
     } finally {
       dispatch(setSellOrdersLoading(false))
     }
@@ -418,7 +416,7 @@ export function useMarket() {
         }
       }
     } catch (err) {
-      console.log('Error in marketplaceCalls.getOpenOrder api ~ ', err)
+      handleApiError(err, { action: 'marketplaceCalls.getOpenOrder' })
     } finally {
       dispatch(setOpenOrdersLoading(false))
     }
@@ -433,7 +431,7 @@ export function useMarket() {
         dispatch(setBuyOrders(buyOrderRes?.data?.buyOrder))
       }
     } catch (err) {
-      console.log('Error in marketplaceCalls.getBuyOrder api : ', err)
+      handleApiError(err, { action: 'marketplaceCalls.getBuyOrder' })
     } finally {
       dispatch(setBuyOrdersLoading(false))
     }

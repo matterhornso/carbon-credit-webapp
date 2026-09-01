@@ -16,6 +16,7 @@ import { getTransaction } from '../../../utils/Marketplace/marketplace.util'
 // import { getApprovedTokensBalance } from '../../../utils/Marketplace/marketplaceSellFlow.util'
 import { getLocalItem, removeItem, setLocalItem } from '../../../utils/Storage'
 import { useMarketPlaceSell } from '../../../hooks/useMarketPlaceSell'
+import { handleApiError } from '../../../utils/errorHandler'
 
 const headings = ['Transaction ID', 'Quantity', 'Status']
 
@@ -83,7 +84,7 @@ const OngoingApprove = () => {
         getApprovedTokensBalance()
       }
     } catch (err) {
-      console.log('Error ', err)
+      handleApiError(err, { action: 'OngoingApprove.checkForPendingTransactions', silent: true })
     }
   }
   return (

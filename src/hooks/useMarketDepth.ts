@@ -4,6 +4,7 @@ import {
     setMarketDepthDataLoading,
   } from '../redux/Slices/Marketplace/marketDepthSlice'
 import { marketplaceCalls } from "../api/marketplaceCalls.api"
+import { handleApiError } from '../utils/errorHandler'
 
 export function useMarketDepth (){
     const dispatch = useAppDispatch()
@@ -22,7 +23,7 @@ export function useMarketDepth (){
             dispatch(setMarketDepthData(rowValues))
           }
         } catch (err) {
-          console.log('Error in marketplaceCalls.getSellOrder api : ', err)
+          handleApiError(err, { action: 'marketplaceCalls.getSellOrder' })
         } finally {
         dispatch(setMarketDepthDataLoading(false))
         }

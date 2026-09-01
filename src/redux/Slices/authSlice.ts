@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { setSentryUser } from '../../config/sentry.config'
 import { removeAllItem, setLocalItem } from '../../utils/Storage'
 
 interface AuthReducerInterface {
@@ -18,8 +19,14 @@ const auth = createSlice({
       state.data = { roles: [action.payload?.type] }
       setLocalItem('loggedIn', { roles: [action.payload?.type] })
       setLocalItem('userDetails', action.payload)
+      // Opaque id + role only, so errors are attributable without shipping PII.
+      setSentryUser(
+        action.payload?.user_id ?? action.payload?.uuid,
+        action.payload?.type
+      )
     },
     logoutAction: () => {
+      setSentryUser(undefined)
       // removeAllItem()
       // localStorage.removeItem('persist:root')
       localStorage.removeItem('userDetails')

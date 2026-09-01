@@ -29,6 +29,7 @@ import {
   setRetryFunction,
   setSecondaryText,
 } from '../../redux/Slices/blockchainStatusModalSlice'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface WithdrawModalProps {
   fromWalletPage?: boolean
@@ -113,7 +114,7 @@ const WithdrawModal: FC<WithdrawModalProps> = ({ fromWalletPage = false }) => {
         dispatch(setCarbonTokenBalances(tokenBalances?.data))
       }
     } catch (err) {
-      console.log('Error in getTokenBalances ~ ' + err)
+      handleApiError(err, { action: 'getTokenBalances' })
     } finally {
       setCarbonLoading(false)
     }
@@ -133,7 +134,7 @@ const WithdrawModal: FC<WithdrawModalProps> = ({ fromWalletPage = false }) => {
         dispatch(setINRTokenBalances(tokenBalances?.data))
       }
     } catch (err) {
-      console.log('Error in getTokenBalances ~ ' + err)
+      handleApiError(err, { action: 'getTokenBalances' })
     } finally {
       setINRLoading(false)
     }

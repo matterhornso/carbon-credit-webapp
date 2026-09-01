@@ -38,6 +38,7 @@ import {
   setSecondaryText,
   setSuccessFunction,
 } from '../../redux/Slices/blockchainStatusModalSlice'
+import { handleApiError } from '../../utils/errorHandler'
 
 const SelectRegistry = () => {
   const navigate = useNavigate()
@@ -93,7 +94,7 @@ const SelectRegistry = () => {
         setRegistries(verifiersWithAllDetailsFilled)
       }
     } catch (err) {
-      console.log('Error in department.getUsersByOrgType ~ ', err)
+      handleApiError(err, { action: 'department.getUsersByOrgType' })
     } finally {
       setLoading(false)
     }

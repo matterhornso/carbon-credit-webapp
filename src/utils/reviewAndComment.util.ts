@@ -7,6 +7,7 @@ import {
 } from '../redux/Slices/commentsSlice'
 import { store } from '../redux/store'
 import { getLocalItem } from './Storage'
+import { handleApiError } from './errorHandler'
 
 export const getComments = async () => {
   const userType = getLocalItem('userDetails')?.type
@@ -91,7 +92,7 @@ const getSectionWiseComment = async (sectionID: string) => {
     const res = await commentsCalls.getComments(urlParam)
     return res?.data
   } catch (err) {
-    console.log('Error in  commentsCalls.getComments api ~ ', err)
+    handleApiError(err, { action: 'commentsCalls.getComments' })
   }
 }
 
@@ -146,7 +147,7 @@ export const sendComment = async () => {
       store.dispatch(setComment(''))
     }
   } catch (err) {
-    console.log('Error in commentsCalls.createComment api ~ ', err)
+    handleApiError(err, { action: 'commentsCalls.createComment' })
   }
 }
 
@@ -161,6 +162,6 @@ export const markCommentsAsRead = async (commentIDs: any) => {
       getComments()
     }
   } catch (e) {
-    console.log('Error in commentsCalls.updateComment api ~ ', e)
+    handleApiError(e, { action: 'commentsCalls.updateComment' })
   }
 }

@@ -7,6 +7,7 @@ import Captcha from '../../components/Captcha/Captcha'
 import { Colors } from '../../theme'
 import CCButton from '../../atoms/CCButton'
 import { USER } from '../../api/user.api'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface ForgotPasswordModalProps {
   showModal: boolean
@@ -48,7 +49,7 @@ const ForgotPasswordModal = ({
         alert(res.error)
       }
     } catch (err) {
-      console.log('Error', err)
+      handleApiError(err, { action: 'ForgotPasswordModal.submit' })
     } finally {
       setCaptchaInput('')
       setLoading(false)

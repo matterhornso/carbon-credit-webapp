@@ -35,6 +35,7 @@ import {
   checkBlockchainTransactionComplete,
   getHashAndVRS,
 } from './marketplace.util'
+import { handleApiError } from '../errorHandler'
 
 export async function getWalletBalanceBuyFlow() {
   const accountAddress = store.getState()?.wallet?.accountAddress
@@ -97,7 +98,7 @@ export async function getWalletBalanceBuyFlow() {
       //   });
       // });
     } catch (err) {
-      console.log(err)
+      handleApiError(err, { action: 'marketplaceBuyFlow.util.getWalletBalanceBuyFlow' })
     }
   }
 }
@@ -114,7 +115,7 @@ export async function getBalanceOnExchangeBuyFlow() {
       const bigNumExchangeBal = ethers.BigNumber.from(exchangeBal)
       store.dispatch(setExchangeBalBuyFlow(bigNumExchangeBal.toNumber()))
     } catch (err) {
-      console.log(err)
+      handleApiError(err, { action: 'marketplaceBuyFlow.util.getBalanceOnExchangeBuyFlow' })
     }
   }
 }
@@ -132,7 +133,7 @@ export async function getApprovedTokensBalanceBuyFlow() {
       store.dispatch(setApprovedTokensBalBuyFlow(bigNumExchangeBal.toNumber()))
     }
   } catch (err) {
-    console.log(err)
+    handleApiError(err, { action: 'marketplaceBuyFlow.util.getApprovedTokensBalanceBuyFlow' })
   }
 }
 
@@ -221,7 +222,7 @@ export async function depositERC20BuyFlow() {
       alert(depositERC20Res?.error)
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.depositERC20 api : ' + err)
+    handleApiError(err, { action: 'marketplaceCalls.depositERC20' })
   } finally {
     store.dispatch(setMarketplaceLoading(false))
   }
@@ -305,7 +306,7 @@ export async function createBuyOrder() {
       }
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.createOrder api : ' + err)
+    handleApiError(err, { action: 'marketplaceCalls.createOrder' })
   } finally {
     store.dispatch(setMarketplaceLoading(false))
   }
@@ -320,7 +321,7 @@ export async function getBuyOrdersListData() {
       store.dispatch(setBuyOrdersListData(buyOrderRes))
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.getBuyOrder api : ', err)
+    handleApiError(err, { action: 'marketplaceCalls.getBuyOrder' })
   } finally {
     store.dispatch(setBuyOrdersListDataLoading(false))
   }

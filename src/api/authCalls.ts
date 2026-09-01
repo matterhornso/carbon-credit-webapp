@@ -24,6 +24,13 @@ export const authCalls = {
       }
     )
   },
+  verifyLoginOtp: (payload: any) => {
+    return AxiosHelper(URL_PATH.authRoutes.verifyLoginOtp, 'POST', payload).then(
+      (res: any) => {
+        return res.data
+      }
+    )
+  },
   resendOTP: (payload: any) => {
     return AxiosHelper(URL_PATH.authRoutes.resendOTP, 'POST', payload).then(
       (res: any) => {

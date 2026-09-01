@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import GeoLocationImg from '../GenerateProjectWithAIComp/PDDContent/GeoLocationImg'
+import GeoLocationImg from './GeoLocationImg'
 import { DUMMY_LOCATION_IMAGES } from '../../config/constants.config'
 
 const LocationImages = () => {

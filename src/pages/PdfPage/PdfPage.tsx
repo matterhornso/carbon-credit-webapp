@@ -17,6 +17,7 @@ import SectionE from './SectionE'
 import Sections from './Sections'
 import './style.css'
 import demo_data from './helpers/data.json'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface PdfPageProps {
   id?: string
@@ -49,9 +50,7 @@ const PdfPage: FC<PdfPageProps> = ({ id, data }) => {
           console.log('project', res?.data)
           dispatch(setPdfData(res?.data))
         })
-        .catch((error) => {
-          console.log('error', error)
-        })
+        .catch((error) => handleApiError(error, { action: 'PdfPage:52' }))
     } else dispatch(setPdfData(data))
   }
 

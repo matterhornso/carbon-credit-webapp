@@ -181,7 +181,7 @@ const AdminDashboardTable = ({ loading }: any) => {
                   dispatch(setSectionIndex(1))
                   dispatch(setSubSectionIndex(3))
                 }
-                navigate(pathNames.ADMIN_DRAFT_EDIT, {
+                navigate(pathNames.PROJECT_DETAILS, {
                   state: { uuid: item?.uuid },
                 })
               }}

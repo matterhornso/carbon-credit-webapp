@@ -47,6 +47,7 @@ import {
   getSellOrdersListData,
   getWalletBalance,
 } from './marketplaceSellFlow.util'
+import { handleApiError } from '../errorHandler'
 
 declare let window: any
 
@@ -67,10 +68,7 @@ export const getTransaction = async (txId: string) => {
         return { res, success }
       }
     } catch (error) {
-      console.log(
-        'Error in transactionCalls.getTransactionByUser api : ',
-        error
-      )
+      handleApiError(error, { action: 'transactionCalls.getTransactionByUser' })
     }
   }
 }
@@ -118,7 +116,7 @@ const checkForPendingTransactions = async (
       getApprovedTokensBalance()
     }
   } catch (err) {
-    console.log('Error ', err)
+    handleApiError(err, { action: 'marketplace.util.checkForPendingTransactions', silent: true })
   }
 }
 
@@ -149,7 +147,7 @@ const getTransactionsAPI = async (
         }
       }
     } catch (err) {
-      console.log('Error ', err)
+      handleApiError(err, { action: 'marketplace.util.getTransactionsAPI', silent: true })
     }
   }
 }
@@ -369,7 +367,7 @@ export async function getHashAndVRS(type: string, randomNumber: any) {
     const s = `0x${sig.slice(64, 128)}`
     return { v, r, s, hash }
   } catch (e) {
-    console.log(e)
+    handleApiError(e, { action: 'marketplace.util.getHashAndVRS' })
   }
 }
 

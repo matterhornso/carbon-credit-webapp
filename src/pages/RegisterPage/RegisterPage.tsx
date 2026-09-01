@@ -36,6 +36,7 @@ import ClearIcon from '../../atoms/ClearIcon'
 import ShowPassword from '../../atoms/ShowPassword'
 import HidePassword from '../../atoms/HidePassword'
 import LoginAndSignupSideInfo from '../../atoms/LoginAndSignupSideInfo/LoginAndSignupSideInfo'
+import { handleApiError } from '../../utils/errorHandler'
 
 const RegisterPage = (props: RegisterPageProps) => {
   const [number, setNumber] = useState<string>('')
@@ -109,7 +110,7 @@ const RegisterPage = (props: RegisterPageProps) => {
           })
         setTypeOptions(roles)
       })
-      .catch((e) => console.log('Error in department.getDepartment api :', e))
+      .catch((e) => handleApiError(e, { action: 'department.getDepartment' }))
   }
 
   const onBoardingNewUser = async () => {
@@ -174,7 +175,7 @@ const RegisterPage = (props: RegisterPageProps) => {
           setCaptchInput('')
         }
       })
-      .catch((e) => console.log(e))
+      .catch((e) => handleApiError(e, { action: 'RegisterPage:177' }))
       .finally(() => {
         setLoading(false)
       })

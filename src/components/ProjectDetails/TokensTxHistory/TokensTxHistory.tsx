@@ -14,6 +14,7 @@ import {
 import { getLocalItem } from '../../../utils/Storage'
 import LoderOverlay from '../../LoderOverlay'
 import LimitedText from '../../../atoms/LimitedText/LimitedText'
+import { handleApiError } from '../../../utils/errorHandler'
 
 let index = 0
 const headings = [
@@ -270,7 +271,7 @@ const TokensTxHistory = (props: any) => {
   //             // }
   //           }
   //         })
-  //         .catch((err) => console.log(err))
+  //         .catch((err) => handleApiError(err, { action: 'TokensTxHistory:273' }))
   //         .finally(() => {
   //           setLoading(false)
   //         })

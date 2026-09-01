@@ -7,6 +7,7 @@ import { setOngoingApproveTokenRetirement } from '../../redux/Slices/tokenRetire
 import { Colors } from '../../theme'
 import { getLocalItem } from '../../utils/Storage'
 import CardRow from './CardRow'
+import { handleApiError } from '../../utils/errorHandler'
 
 declare let window: any
 
@@ -67,10 +68,7 @@ const OngoingApproval = () => {
         return { res, success }
       }
     } catch (error) {
-      console.log(
-        'Error in transactionCalls.getTransactionByUser api : ',
-        error
-      )
+      handleApiError(error, { action: 'transactionCalls.getTransactionByUser' })
     }
   }
 
@@ -88,7 +86,7 @@ const OngoingApproval = () => {
         }
       }
     } catch (err) {
-      console.log('Error ', err)
+      handleApiError(err, { action: 'OngoingApproval.checkForPendingTransactions', silent: true })
     }
   }
 

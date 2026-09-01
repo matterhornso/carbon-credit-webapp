@@ -36,6 +36,7 @@ import CCButton from '../../atoms/CCButton'
 import { carbonCalculatorService } from '../../api/carbonCalculator.api'
 import LoderOverlay from '../LoderOverlay'
 import TotalCO2Modal from './TotalCO2Modal'
+import { handleApiError } from '../../utils/errorHandler'
 
 const CarbonCalculatorComp = () => {
   const dispatch = useAppDispatch()
@@ -275,7 +276,7 @@ const CarbonCalculatorComp = () => {
         return
       }
     } catch (e) {
-      console.log(e)
+      handleApiError(e, { action: 'CarbonCalculatorComp.handleSave' })
     } finally {
       setLoader(false)
     }

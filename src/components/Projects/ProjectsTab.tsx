@@ -29,6 +29,7 @@ import { ProjectDraftCalls } from '../../api/projectDraftCalls.api'
 
 import { setCachedDraftProjects } from '../../redux/Slices/cachingSlice'
 import PddDashboardTable from './PddDashboardTable'
+import { handleApiError } from '../../utils/errorHandler'
 interface ProjectsTabProps {}
 
 const ProjectsTab: FC<ProjectsTabProps> = (props) => {
@@ -104,7 +105,7 @@ const ProjectsTab: FC<ProjectsTabProps> = (props) => {
         }
       }
     } catch (error) {
-      console.log(error)
+      handleApiError(error, { action: 'ProjectsTab.loadTableData' })
     } finally {
       setLoading(false)
     }

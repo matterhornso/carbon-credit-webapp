@@ -6,6 +6,7 @@ import { Colors } from '../../theme'
 import CCButton from '../../atoms/CCButton'
 import { authCalls } from '../../api/authCalls'
 import { getLocalItem } from '../../utils/Storage'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface ResendOTPModalProps {
   showModal: boolean
@@ -50,7 +51,7 @@ const ResendOTPModal = ({
         alert(res?.error)
       }
     } catch (e) {
-      console.log('Error in OTPVerficationModal.js ~ ', e)
+      handleApiError(e, { action: 'OTPVerficationModal.js' })
     } finally {
       setShowModal(false)
       setLoading(false)

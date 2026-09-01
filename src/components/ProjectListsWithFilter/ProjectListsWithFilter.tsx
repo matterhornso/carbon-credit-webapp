@@ -33,6 +33,7 @@ import { setCachedMarketplaceProject } from '../../redux/Slices/marketPlaceCachi
 import MarketPlaceFilterChip from '../../atoms/MarketPlaceFilterChip/MarketPlaceFilterChip'
 import CCButton from '../../atoms/CCButton'
 import lodash from 'lodash'
+import { handleApiError } from '../../utils/errorHandler'
 
 const ProjectListsWithFilter = () => {
   console.log('Reloadeed ProjectListsWithFilter **')
@@ -118,7 +119,7 @@ const ProjectListsWithFilter = () => {
         }
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.getVerifiedProjects api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.getVerifiedProjects' })
     } finally {
       setLoading(false)
     }

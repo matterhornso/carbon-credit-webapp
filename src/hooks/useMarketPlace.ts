@@ -50,6 +50,7 @@ import { useMarketDepth } from './useMarketDepth'
 import { useAppDispatch, useAppSelector } from './reduxHooks'
 import { useMarketplaceBuy } from './useMarketPlaceBuy'
 import { useMarketPlaceSell } from './useMarketPlaceSell'
+import { handleApiError } from '../utils/errorHandler'
 
 declare let window: any
 
@@ -95,10 +96,7 @@ export const useMarketPlace = ()=>{
               return { res, success }
             }
           } catch (error) {
-            console.log(
-              'Error in transactionCalls.getTransactionByUser api : ',
-              error
-            )
+            handleApiError(error, { action: 'transactionCalls.getTransactionByUser' })
           }
         }
       }
@@ -146,7 +144,7 @@ export const useMarketPlace = ()=>{
             getApprovedTokensBalance()
           }
         } catch (err) {
-          console.log('Error ', err)
+          handleApiError(err, { action: 'useMarketPlace.checkForPendingTransactions', silent: true })
         }
       }
       
@@ -177,7 +175,7 @@ export const useMarketPlace = ()=>{
               }
             }
           } catch (err) {
-            console.log('Error ', err)
+            handleApiError(err, { action: 'useMarketPlace.getTransactionsAPI', silent: true })
           }
         }
       }
@@ -397,7 +395,7 @@ export const useMarketPlace = ()=>{
           const s = `0x${sig.slice(64, 128)}`
           return { v, r, s, hash }
         } catch (e) {
-          console.log(e)
+          handleApiError(e, { action: 'useMarketPlace.getHashAndVRS' })
         }
       }
       

@@ -4,23 +4,31 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
+import ErrorBoundary from './components/ErrorBoundary'
+import { initSentry } from './config/sentry.config'
 import './index.css'
 import Main from './Main'
 import { persistor, store } from './redux/store'
 
 // import reportWebVitals from './reportWebVitals';
 
+// Before render, so boot-time failures are captured too.
+initSentry()
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <CssBaseline />
-          <Main />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
+    {/* Last resort: catches failures in the providers themselves. */}
+    <ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <CssBaseline />
+            <Main />
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>
 )
 

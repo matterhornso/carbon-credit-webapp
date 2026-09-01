@@ -14,6 +14,7 @@ import { fileUploadCalls } from '../../api/fileUpload.api'
 import CCFileViewer from '../CCFileViewer/CCFileViewer'
 import { setFileUploadInProgress } from '../../redux/Slices/issuanceDataCollection'
 import { useAppDispatch } from '../../hooks/reduxHooks'
+import { handleApiError } from '../../utils/errorHandler'
 
 // Local Imports
 
@@ -87,7 +88,7 @@ const CCDropAndUpload: FC<CCDropAndUploadProps> = (props) => {
               : null
             return all_files
           } catch (e) {
-            console.log(e)
+            handleApiError(e, { action: 'CCDropAndUpload.addMoreImageUpload' })
           } finally {
             dispatch(setFileUploadInProgress(false))
             setUploading(false)

@@ -20,6 +20,7 @@ import {
   checkBlockchainTransactionComplete,
   getHashAndVRS,
 } from './marketplace.util'
+import { handleApiError } from '../errorHandler'
 
 export async function createWithdrawOrder() {
   try {
@@ -81,7 +82,7 @@ export async function createWithdrawOrder() {
       }
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.withdraw api : ' + err)
+    handleApiError(err, { action: 'marketplaceCalls.withdraw' })
   } finally {
     store.dispatch(setMarketplaceLoading(false))
   }

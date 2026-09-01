@@ -24,6 +24,7 @@ import { Colors } from '../../theme'
 import BuyTokenPriceDetails from './BuyTokenPriceDetails'
 import { convertToInternationalCurrencySystem } from '../../utils/commonFunctions'
 import { setRetryFunction } from '../../redux/Slices/blockchainStatusModalSlice'
+import { handleApiError } from '../../utils/errorHandler'
 
 const BuyComp = () => {
   const dispatch = useAppDispatch()
@@ -128,7 +129,7 @@ const BuyComp = () => {
         dispatch(setBuyQuantity(0))
       }
     } catch (err) {
-      console.log('Error in marketplaceCalls.checkForFullFillOrder api :', err)
+      handleApiError(err, { action: 'marketplaceCalls.checkForFullFillOrder' })
     } finally {
       dispatch(setCheckFulfilLoading(false))
     }

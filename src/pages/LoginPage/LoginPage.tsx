@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 
 // MUI Imports
-import { Box, Grid, InputAdornment, Typography } from '@mui/material'
+import { Alert, Box, Grid, InputAdornment, Typography } from '@mui/material'
 
 // Functional Imports
 import { v4 as uuidv4 } from 'uuid'
@@ -37,6 +37,7 @@ import climat_carbon from '../../assets/Images/logo/climat_carbon.svg'
 import ShowPassword from '../../atoms/ShowPassword'
 import HidePassword from '../../atoms/HidePassword'
 import LoginAndSignupSideInfo from '../../atoms/LoginAndSignupSideInfo/LoginAndSignupSideInfo'
+import { handleApiError } from '../../utils/errorHandler'
 declare let window: any
 
 const Login = () => {
@@ -54,9 +55,27 @@ const Login = () => {
   const [showPasswordAdornment, setShowPasswordAdornment] =
     useState<boolean>(false)
   const [logo, setLogo] = useState<any>(Images.ClimatIconRevised)
+  const [sessionExpired, setSessionExpired] = useState(false)
+
+  // auth-service's real /auth/login response only issues an OTP (via a
+  // fire-and-forget email) and never returns a token directly — a second
+  // /auth/verify-otp call is required to actually get a session. loginId is
+  // the login-response's `id` field, which verify-otp expects back as `uuid`.
+  const [otpStep, setOtpStep] = useState(false)
+  const [loginId, setLoginId] = useState('')
+  const [otpInput, setOtpInput] = useState('')
+  const [otpError, setOtpError] = useState('')
 
   useEffect(() => {
     setCaptchaTokenFromUUID()
+  }, [])
+
+  useEffect(() => {
+    // Set by the axios 401 handler before it redirects here.
+    if (sessionStorage.getItem('sessionExpired')) {
+      setSessionExpired(true)
+      sessionStorage.removeItem('sessionExpired')
+    }
   }, [])
 
   const params = new URLSearchParams(location?.search)
@@ -110,30 +129,17 @@ const Login = () => {
     try {
       setLoading(true)
       const res = await authCalls.loginCall(payload)
-      if (res?.success && res?.data) {
-        if (res?.status === 204) {
-          alert('Retry login with new Captch')
-          setCaptchaInput('')
-          return
-        }
-        if (res?.data?.captchaVerify) {
-          const userResponse = await USER.getUsersById(res?.data?.user_id)
-          setLocalItem('userDetails2', userResponse?.data)
-          // update wallet balance and table
-          updateWalletBalance()
-          dispatch(setWalletAdded(userResponse?.data?.wallet_added))
-          const profileCompleted = userResponse?.data?.orgName ? true : false
-          setLocalItem('profileCompleted', profileCompleted)
-          dispatch(loginAction(res?.data)) //calling action from redux
-          if (res.data.type === 'ISSUER' || res.data.type === 'VERIFIER') {
-            navigate(pathNames.DASHBOARD, { replace: true })
-          }
-
-          window.location.reload()
-        } else {
-          alert(res?.data)
-          // alert(`${res?.data} some data`)
-        }
+      if (res?.status === 204) {
+        alert('Retry login with new Captch')
+        setCaptchaInput('')
+        return
+      }
+      if (res?.success && res?.data?.id) {
+        // Login step only issues an OTP — move to the verification step
+        // rather than treating this as a completed session.
+        setLoginId(res.data.id)
+        setOtpError('')
+        setOtpStep(true)
       } else if (res?.error || res.status !== 200) {
         alert(
           res?.error ||
@@ -143,10 +149,67 @@ const Login = () => {
         setCaptchaInput('')
       }
     } catch (e: any) {
-      console.log('Error in authCalls.loginCall api', e)
+      handleApiError(e, { action: 'authCalls.loginCall' })
     } finally {
       new window.PasswordCredential({ id: payload.email, password: uuidv4() })
       setLoading(false)
+    }
+  }
+
+  // Marketplace wallet/profile side data — best-effort. A failure here
+  // shouldn't strand a verified session without ever dispatching login.
+  const loadWalletAndProfile = async (uuid: string) => {
+    try {
+      const userResponse = await USER.getUsersById(uuid)
+      setLocalItem('userDetails2', userResponse?.data)
+      updateWalletBalance()
+      dispatch(setWalletAdded(userResponse?.data?.wallet_added))
+      setLocalItem('profileCompleted', userResponse?.data?.orgName ? true : false)
+    } catch (e: any) {
+      handleApiError(e, { action: 'USER.getUsersById' })
+    }
+  }
+
+  const verifyOtp = async () => {
+    if (!otpInput) return
+    setLoading(true)
+    setOtpError('')
+    try {
+      const res = await authCalls.verifyLoginOtp({ uuid: loginId, otp: otpInput })
+      if (res?.success && res?.data?.jwtToken) {
+        await loadWalletAndProfile(res.data.uuid)
+        dispatch(loginAction(res.data))
+        if (res.data.type === 'ISSUER' || res.data.type === 'VERIFIER') {
+          navigate(pathNames.DASHBOARD, { replace: true })
+        }
+        window.location.reload()
+      } else {
+        setOtpError(res?.error || 'Incorrect or expired code — try again.')
+      }
+    } catch (e: any) {
+      setOtpError('Incorrect or expired code — try again.')
+      handleApiError(e, { action: 'authCalls.verifyLoginOtp' })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const resendOtp = async () => {
+    setOtpError('')
+    try {
+      const res = await authCalls.resendOTP({
+        uuid: loginId,
+        id: captchaToken,
+        captcha: captchaInput,
+      })
+      if (res?.success) {
+        setOtpError('A new code has been sent.')
+      } else {
+        setOtpError(res?.error || 'Could not resend the code.')
+      }
+    } catch (e: any) {
+      setOtpError('Could not resend the code.')
+      handleApiError(e, { action: 'authCalls.resendOTP' })
     }
   }
 
@@ -219,15 +282,95 @@ const Login = () => {
             <Typography
               sx={{ fontWeight: '400', fontSize: 28, color: '#029FB3' }}
             >
-              Login
+              {otpStep ? 'Enter verification code' : 'Login'}
             </Typography>
             <Typography
               sx={{ fontWeight: '500', fontSize: 16, marginTop: 0.5 }}
             >
-              Login by providing the information below
+              {otpStep
+                ? 'We sent a code to your email — it expires in a couple of minutes.'
+                : 'Login by providing the information below'}
             </Typography>
+            {sessionExpired && (
+              <Alert
+                severity="info"
+                sx={{ mt: 2 }}
+                onClose={() => setSessionExpired(false)}
+              >
+                Your session expired. Please log in again to continue.
+              </Alert>
+            )}
           </Box>
 
+          {otpStep && (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+              }}
+            >
+              <CCInputField
+                label="Verification code"
+                variant="outlined"
+                name="otp"
+                value={otpInput}
+                onChange={(e: any) => setOtpInput(e.target.value)}
+                onKeyDown={(e: any) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    verifyOtp()
+                  }
+                }}
+                sx={{ width: '462px', mt: '24px' }}
+              />
+              {otpError && (
+                <Alert severity="info" sx={{ mt: 2, width: '462px' }}>
+                  {otpError}
+                </Alert>
+              )}
+              <CCButton
+                type="button"
+                onClick={verifyOtp}
+                sx={{
+                  height: '62px',
+                  width: '462px',
+                  borderRadius: '8px !important',
+                  marginTop: '24px !important',
+                  background: 'linear-gradient(225deg, #01623D 0%, #8BD3DC 100%)',
+                  boxShadow: '0px 4px 6px 0px rgba(29, 74, 67, 0.15)',
+                  color: 'white !important',
+                  fontSize: '20px !important',
+                  fontWeight: '500',
+                }}
+                variant="contained"
+              >
+                {loading ? 'Verifying...' : 'Verify'}
+              </CCButton>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '462px', mt: 2 }}>
+                <Typography
+                  sx={{ fontSize: 14, cursor: 'pointer', color: Colors.textColorDarkGreen, fontWeight: '500' }}
+                  onClick={() => {
+                    setOtpStep(false)
+                    setOtpInput('')
+                    setOtpError('')
+                  }}
+                >
+                  Back to login
+                </Typography>
+                <Typography
+                  sx={{ fontSize: 14, cursor: 'pointer', color: Colors.textColorDarkGreen, fontWeight: '500' }}
+                  onClick={resendOtp}
+                >
+                  Resend code
+                </Typography>
+              </Box>
+            </Box>
+          )}
+
+          {!otpStep && (
+          <>
           <Box
             sx={{
               display: 'flex',
@@ -446,6 +589,8 @@ const Login = () => {
               </Box>
             </Box>
           </Box>
+          </>
+          )}
         </Box>
       </Box>
       <Box

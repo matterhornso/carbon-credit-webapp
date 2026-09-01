@@ -41,8 +41,6 @@ import SelectRegistry from '../pages/SelectRegistry/SelectRegistry'
 // import VerifierVerifyReport from '../pages/VerifierVerifyReport'
 // import Wallet from '../pages/Wallet'
 import { linkLabels, pathNames } from './pathNames'
-import CreateNewProject from '../pages/CreateNewProject'
-import AdminDraftEdit from '../pages/AdminDraftEdit/AdminDraftEdit'
 import FinalPDF from '../pages/FinalPDF/FinalPDF'
 import CarbonCalculator from '../pages/CarbonCalculator/CarbonCalculator'
 
@@ -91,7 +89,6 @@ const ProjectList = loadable(() => import('../pages/ProjectList'))
 const ProjectListsWithFilter = loadable(
   () => import('../pages/ProjectListsWithFilter/ProjectListsWithFilter')
 )
-const ProjectPage = loadable(() => import('../pages/ProjectPage'))
 const RegistryReviewReport = loadable(
   () => import('../pages/RegistryReviewReport/RegistryReviewReport')
 )
@@ -129,11 +126,8 @@ const Wallet = loadable(() => import('../pages/Wallet'))
 //const PdfPage = loadable(() => import('../pages/PdfPage/PdfPage'))
 const AllProjects = loadable(() => import('../pages/AllProjects/AllProjects'))
 
-const RegistryReviewPdfReport = loadable(
-  () => import('../pages/RegistryReviewPdfReport/RegistryReviewPdfReport')
-)
-const GenerateProjectWithAI = loadable(
-  () => import('../pages/GenerateProjectWithAI/GenerateProjectWithAI')
+const OriginationWizard = loadable(
+  () => import('../components/Origination/OriginationWizard')
 )
 
 export const privateRouteComponents = [
@@ -408,23 +402,13 @@ export const privateRouteComponents = [
     roles: [ROLES.ISSUER],
   },
   {
-    path: pathNames.CREATE_NEW_PROJECT,
-    component: CreateNewProject,
+    path: pathNames.ORIGINATION_NEW,
+    component: OriginationWizard,
     roles: [ROLES.ISSUER],
   },
   {
-    path: pathNames.ADMIN_DRAFT_EDIT,
-    component: AdminDraftEdit,
-    roles: [ROLES.ADMIN],
-  },
-  {
-    path: pathNames.REGISTRY_PDF_REVIEW,
-    component: RegistryReviewPdfReport,
-    roles: [ROLES.REGISTRY],
-  },
-  {
-    path: pathNames.GENERATE_PROJECT_WITH_AI,
-    component: GenerateProjectWithAI,
+    path: pathNames.ORIGINATION,
+    component: OriginationWizard,
     roles: [ROLES.ISSUER],
   },
   {

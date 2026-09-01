@@ -17,6 +17,7 @@ import VerifierVerified from './AllTraceTabDetails/VerifierVerified'
 import TraceDetails from './TraceDetails'
 import './TraceHistory.css'
 import RegistrySelected from './AllTraceTabDetails/RegistrySelected'
+import { handleApiError } from '../../../utils/errorHandler'
 
 const typeAndTabCompMatching: any = {
   createProject: CreateProject,
@@ -80,10 +81,7 @@ const WebAppTraceHistory: FC<WebAppTraceHistoryProps> = (props) => {
         setTraceAllData(traceRes.data)
       }
     } catch (err) {
-      console.log(
-        'Error in TraceabilityCalls.getProjectDetailsById api ~ ',
-        err
-      )
+      handleApiError(err, { action: 'TraceabilityCalls.getProjectDetailsById' })
     } finally {
       setLoading(false)
     }
@@ -98,7 +96,7 @@ const WebAppTraceHistory: FC<WebAppTraceHistoryProps> = (props) => {
         setTokenAddress(res?.data?.token_address)
       }
     } catch (err) {
-      console.log('Error in eventsCalls.getTokenByProjectUUID api ~ ', err)
+      handleApiError(err, { action: 'eventsCalls.getTokenByProjectUUID' })
     }
   }
 

@@ -37,6 +37,7 @@ import { setLocalItem } from '../utils/Storage'
 // } from './marketplace.util'
 import { useAppDispatch, useAppSelector } from './reduxHooks'
 import { useMarketPlace } from './useMarketPlace'
+import { handleApiError } from '../utils/errorHandler'
 
 export const useMarketplaceBuy = () => {
     const dispatch = useAppDispatch()
@@ -119,7 +120,7 @@ export const useMarketplaceBuy = () => {
                 //   });
                 // });
             } catch (err) {
-                console.log(err)
+              handleApiError(err, { action: 'useMarketPlaceBuy.getWalletBalanceBuyFlow' })
             }
         }
     }
@@ -136,7 +137,7 @@ export const useMarketplaceBuy = () => {
                 const bigNumExchangeBal = ethers.BigNumber.from(exchangeBal)
                 dispatch(setExchangeBalBuyFlow(bigNumExchangeBal.toNumber()))
             } catch (err) {
-                console.log(err)
+              handleApiError(err, { action: 'useMarketPlaceBuy.getBalanceOnExchangeBuyFlow' })
             }
         }
     }
@@ -154,7 +155,7 @@ export const useMarketplaceBuy = () => {
                 dispatch(setApprovedTokensBalBuyFlow(bigNumExchangeBal.toNumber()))
             }
         } catch (err) {
-            console.log(err)
+          handleApiError(err, { action: 'useMarketPlaceBuy.getApprovedTokensBalanceBuyFlow' })
         }
     }
 
@@ -243,7 +244,7 @@ export const useMarketplaceBuy = () => {
                 alert(depositERC20Res?.error)
             }
         } catch (err) {
-            console.log('Error in marketplaceCalls.depositERC20 api : ' + err)
+          handleApiError(err, { action: 'marketplaceCalls.depositERC20' })
         } finally {
             dispatch(setMarketplaceLoading(false))
         }
@@ -327,7 +328,7 @@ export const useMarketplaceBuy = () => {
                 }
             }
         } catch (err) {
-            console.log('Error in marketplaceCalls.createOrder api : ' + err)
+          handleApiError(err, { action: 'marketplaceCalls.createOrder' })
         } finally {
             dispatch(setMarketplaceLoading(false))
         }
@@ -342,7 +343,7 @@ export const useMarketplaceBuy = () => {
                 dispatch(setBuyOrdersListData(buyOrderRes))
             }
         } catch (err) {
-            console.log('Error in marketplaceCalls.getBuyOrder api : ', err)
+          handleApiError(err, { action: 'marketplaceCalls.getBuyOrder' })
         } finally {
             dispatch(setBuyOrdersListDataLoading(false))
         }

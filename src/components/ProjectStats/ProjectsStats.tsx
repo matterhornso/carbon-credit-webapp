@@ -28,6 +28,7 @@ import { shallowEqual } from 'react-redux'
 
 import { Images } from '../../theme/Images'
 import { ProjectDraftCalls } from '../../api/projectDraftCalls.api'
+import { handleApiError } from '../../utils/errorHandler'
 
 const ProjectsStats = () => {
   const dispatch = useAppDispatch()
@@ -268,7 +269,7 @@ const ProjectsStats = () => {
         apiData = res?.data
       }
     } catch (err) {
-      console.log('Error in buyerCalls.getStats api : ', err)
+      handleApiError(err, { action: 'buyerCalls.getStats' })
     } finally {
       setLoading(false)
     }

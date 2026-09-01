@@ -16,9 +16,6 @@ export const drawerExemptList = [
   // pathNames.PROJECT_LISTS_WITH_FILTER,
   // pathNames.MARKETPLACE,
   pathNames.PDF,
-  pathNames.CREATE_NEW_PROJECT,
-  pathNames.ADMIN_DRAFT_EDIT,
-  pathNames.GENERATE_PROJECT_WITH_AI,
   pathNames.FINAL_PDF,
 ]
 
@@ -28,5 +25,4 @@ export const hybridPaths = [
   pathNames.PROJECT_DETAILS,
   'projects.html',
   pathNames.PROJECT_LISTS_WITH_FILTER,
-  // pathNames.GENERATE_PROJECT_WITH_AI,
 ]

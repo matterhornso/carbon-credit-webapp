@@ -5,6 +5,7 @@ import {
     setBuyerTokenBalance,
     setTokensApprovedForRetiring,
   } from '../redux/Slices/tokenRetireSlice'
+import { handleApiError } from '../utils/errorHandler'
 
 export function useTokenRetire(){
 
@@ -26,7 +27,7 @@ export function useTokenRetire(){
             }
           }
         } catch (err) {
-          console.log('error', err)
+          handleApiError(err, { action: 'useTokenRetire.getTokensBalance' })
         }
       }
 
@@ -46,7 +47,7 @@ export function useTokenRetire(){
               )
             }
           } catch (err) {
-            console.log('Error in getting buyer allowance :', err)
+            handleApiError(err, { action: 'getting buyer allowance' })
           }
         }
       }

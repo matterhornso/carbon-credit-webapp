@@ -5,6 +5,7 @@ import {
   setUpdateWalletLoading,
   setWalletUpdated,
 } from '../redux/Slices/walletSlice'
+import { handleApiError } from '../utils/errorHandler'
 
 export function useWallet() {
   const dispatch = useAppDispatch()
@@ -17,7 +18,7 @@ export function useWallet() {
         const res = await eventsCalls.updateWalletBalance(publicKey)
         dispatch(setWalletUpdated(true))
       } catch (e) {
-        console.log('Error in eventsCalls.updateWalletBalance api ~ ', e)
+        handleApiError(e, { action: 'eventsCalls.updateWalletBalance', silent: true })
       } finally {
         dispatch(setUpdateWalletLoading(false))
       }

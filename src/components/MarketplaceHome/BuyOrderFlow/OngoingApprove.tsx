@@ -15,6 +15,7 @@ import { limitTitleFromMiddle } from '../../../utils/commonFunctions'
 import { getApprovedTokensBalanceBuyFlow } from '../../../utils/Marketplace/marketplaceBuyFlow.util'
 import { getLocalItem, removeItem } from '../../../utils/Storage'
 import {useMarketPlace} from '../../../hooks/useMarketPlace'
+import { handleApiError } from '../../../utils/errorHandler'
 
 const headings = ['Transaction ID', 'Quantity', 'Status']
 
@@ -81,7 +82,7 @@ const OngoingApprove = () => {
         getApprovedTokensBalanceBuyFlow()
       }
     } catch (err) {
-      console.log('Error ', err)
+      handleApiError(err, { action: 'OngoingApprove.checkForPendingTransactions', silent: true })
     }
   }
   return (

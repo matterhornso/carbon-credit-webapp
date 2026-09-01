@@ -5,6 +5,7 @@ import BlockchainCalls from '../blockchain/Blockchain'
 import { setAccountAddress, setConnected, setLoadWallet, setMetamask, setAlertMessage, setLoadWalletAlert, resetWallet, setAccountAddressToConnectWith, setShowAddMetaMaskAccountModal, setAccountBalance, setWalletAdded } from '../redux/Slices/walletSlice'
 import { store } from '../redux/store'
 import { getLocalItem, setLocalItem } from './Storage'
+import { handleApiError } from './errorHandler'
 declare let window: any
 
 export const BlockchainListener = () => {
@@ -101,9 +102,7 @@ export const onManualConnectClick = async () => {
                     alert(res?.data?.error)
                 }
             })
-            .catch((e) =>
-                console.log('error checkMetamaskAvailability promise :', e)
-            )
+            .catch((e) => handleApiError(e, { action: 'checkMetamaskAvailability promise', silent: true }))
     } else {
         return false
     }
@@ -171,7 +170,7 @@ export const updateUserWithShineKey = async (shineKey: string) => {
             }
         }
     } catch (error) {
-        console.log('error USER.updateUserInfo api :', error)
+      handleApiError(error, { action: 'USER.updateUserInfo' })
     }
 }
 

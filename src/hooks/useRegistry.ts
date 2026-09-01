@@ -1,5 +1,6 @@
 import { registryCalls } from '../api/registry.api'
 import { getLocalItem } from '../utils/Storage'
+import { handleApiError } from '../utils/errorHandler'
 
 export function useRegistry() {
   const updateRegistryProjectStatus = async (id: string, projectId: string) => {
@@ -20,7 +21,7 @@ export function useRegistry() {
       const res = await registryCalls.registryUpdate(payload)
       console.log('payload: ', payload, 'res: ', res)
     } catch (e) {
-      console.log('e:', e)
+      handleApiError(e, { action: 'useRegistry.updateRegistryProjectStatus' })
     }
   }
 

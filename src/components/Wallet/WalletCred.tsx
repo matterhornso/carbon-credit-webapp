@@ -13,6 +13,7 @@ import CCButton from '../../atoms/CCButton'
 import { USER } from '../../api/user.api'
 import { getLocalItem } from '../../utils/Storage'
 import { downloadText } from '../../utils/commonFunctions'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface WalletCredProps {
   privateKey?: any
@@ -28,9 +29,7 @@ const WalletCred: FC<WalletCredProps> = (props) => {
           alert(res?.error[0])
         }
       })
-      .catch((e) => {
-        console.log('Error in USER.getPrivateKey api ~ ', e)
-      })
+      .catch((e) => handleApiError(e, { action: 'USER.getPrivateKey' }))
   }
 
   return (

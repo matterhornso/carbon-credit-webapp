@@ -7,6 +7,7 @@ import { getLocalItem } from '../../utils/Storage'
 import ProjectCards from './ProjectCards'
 import RetirementCertificate from './RetirementCertificate'
 import EmptyComponent from '../../atoms/EmptyComponent/EmptyComponent'
+import { handleApiError } from '../../utils/errorHandler'
 
 const TokenRetirementProjectList = () => {
   const userID = getLocalItem('userDetails')?.user_id || ''
@@ -28,7 +29,7 @@ const TokenRetirementProjectList = () => {
         // setFilteredProjects(projectRes.data.data)
       }
     } catch (e) {
-      console.log('Error in buyerCalls.getPurchasedProjectToRetire api ~ ', e)
+      handleApiError(e, { action: 'buyerCalls.getPurchasedProjectToRetire' })
     } finally {
       setLoading(false)
     }

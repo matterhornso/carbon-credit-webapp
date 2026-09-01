@@ -7,6 +7,7 @@ import { CaptchaProps } from './Captcha.interface'
 import { authCalls } from '../../api/authCalls'
 import { Box } from '@mui/system'
 import CCInputField from '../../atoms/CCInputField'
+import { handleApiError } from '../../utils/errorHandler'
 
 export default function Captcha({
   captchaInput,
@@ -30,7 +31,7 @@ export default function Captcha({
         const imageObjectURL = URL.createObjectURL(imageBlob)
         setCaptchaImg(imageObjectURL)
       })
-      .catch((e) => console.log(e))
+      .catch((e) => handleApiError(e, { action: 'Captcha:33' }))
   }
 
   return (

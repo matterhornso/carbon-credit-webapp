@@ -42,17 +42,10 @@ import marketplaceCaching from './marketPlaceCachingSlice'
 import allProjectsCaching from './allProjectsCachingSlice'
 import allProjectsFiltersSlice from './allProjectsFiltersSlice'
 import blockchainStatusModal from './blockchainStatusModalSlice'
-import createNewProject from './CreateNewProject/createNewProjectSlice'
 import createNewProjectSection from './CreateNewProject/createNewProjectSectionSlice'
 import createNewProjectSubSection from './CreateNewProject/createNewProjectSubSectionSlice'
-import reviewMethodology from './CreateNewProject/reviewMethodologySlice'
-import draftPDDCompilation from './CreateNewProject/draftPDDCompilationSlice'
-import draftPDDCompilationV2 from './CreateNewProject/draftPDDCompilationV2Slice'
-import methodologyDetermination from './CreateNewProject/methodologyDeterminationSlice'
-import projectIntroductionV2 from './CreateNewProject/projectIntroductionV2Slice'
 import adminDraftEdit from './adminDraftEditSlice'
 import unattendedAdminChanges from './adminEditChangesSlice'
-import pdfV2Slice from './CreateNewProject/pdfV2Slice'
 import generateAi from './GenerateAiSlice'
 import pdfComments from './pdfCommentsSlice'
 import projectDraftDetails from './projectDraftDetails'
@@ -63,6 +56,8 @@ import GPTAssistanceConversationSlice from './GPTAssistanceConversationSlice'
 import finalPDFSlice from './FinalPDFSlice'
 import CCSnackbar from './CCSnackbarSlice'
 import carbonCreditCalculator from './carbonCreditCalculatorSlice'
+import originationMethodology from './Origination/methodologySlice'
+import originationProject from './Origination/projectSlice'
 
 export default {
   app,
@@ -106,18 +101,11 @@ export default {
   allProjectsCaching,
   allProjectsFiltersSlice,
   blockchainStatusModal,
-  createNewProject,
   createNewProjectSection,
   createNewProjectSubSection,
-  reviewMethodology,
-  draftPDDCompilation,
-  draftPDDCompilationV2,
-  methodologyDetermination,
-  projectIntroductionV2,
   adminDraftEdit,
   // added
   unattendedAdminChanges,
-  pdfV2Slice,
   generateAi,
   pdfComments,
   projectDraftDetails,
@@ -128,4 +116,6 @@ export default {
   finalPDFSlice,
   CCSnackbar,
   carbonCreditCalculator,
+  originationMethodology,
+  originationProject,
 }

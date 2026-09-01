@@ -37,6 +37,7 @@ import { getLocalItem } from '../../utils/Storage'
 import { projectDetailsCalls } from '../../api/projectDetailsCalls.api'
 import { ProjectDraftCalls } from '../../api/projectDraftCalls.api'
 import { getEditorBlockData } from '../../utils/editor.util'
+import { handleApiError } from '../../utils/errorHandler'
 
 const tabs = [
   'About',
@@ -85,7 +86,7 @@ const ProfileDetailsIssuanceInfo: FC = () => {
         setLoading(false)
       }
     } catch (e) {
-      console.log(e)
+      handleApiError(e, { action: 'ProfileDetailsIssuanceInfo.getProjectByUUID' })
     }
   }
 

@@ -9,9 +9,9 @@ import { Box, Divider } from '@mui/material'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { fileUploadCalls } from '../../api/fileUpload.api'
 import './index.css'
-// import AskAiTool from '../CreateNewProject/AskAI/AskAITool'
-// import AskAiTooltip from '../CreateNewProject/AskAI/AskAiTooltip'
-import { AiBlockTune } from '../CreateNewProject/AskAI/AiBlockTune'
+// import AskAiTool from './AskAI/AskAITool'
+// import AskAiTooltip from './AskAI/AskAiTooltip'
+import { AiBlockTune } from './AskAI/AiBlockTune'
 import {
   setEditorBlockAction,
   setEditorBlockActionDeleteParams,
@@ -19,7 +19,7 @@ import {
   setEditorBlockActionUpdateParams,
 } from '../../redux/Slices/GenerateAiSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { disableAiBlockTune } from '../CreateNewProject/AskAI/disableAiBlockTune'
+import { disableAiBlockTune } from './AskAI/disableAiBlockTune'
 
 interface CCEditorProps {
   editorID: string

@@ -19,6 +19,7 @@ import {
     checkingMandatoryFields,
     checkMandatoryFieldsArrayObjects,
   } from '../utils/newProject.utils'
+import { handleApiError } from '../utils/errorHandler'
 
 
 export function useReport() {
@@ -82,7 +83,7 @@ export function useReport() {
               alert(res?.error)
             }
           } catch (e) {
-            console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+            handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
           }
         }
       
@@ -129,7 +130,7 @@ export function useReport() {
               alert(res?.error)
             }
           } catch (e) {
-            console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+            handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
           }
         }
       
@@ -237,7 +238,7 @@ export function useReport() {
               alert(res?.error)
             }
           } catch (e) {
-            console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+            handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
           }
         }
       
@@ -293,7 +294,7 @@ export function useReport() {
               alert(res?.error)
             }
           } catch (e) {
-            console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+            handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
           }
         }
       
@@ -369,7 +370,7 @@ export function useReport() {
               alert(res?.error)
             }
           } catch (e) {
-            console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+            handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
           }
         }
       
@@ -537,7 +538,7 @@ export function useReport() {
               alert(res?.error)
             }
           } catch (e) {
-            console.log('Error in dataCollectionCalls.createNewProject api ~ ', e)
+            handleApiError(e, { action: 'dataCollectionCalls.createNewProject' })
           }
         }
       }
@@ -560,7 +561,7 @@ export function useReport() {
             alert(res?.error)
           }
         } catch (e) {
-          console.log('Error in dataCollectionCalls.getProjectById api ~ ', e)
+          handleApiError(e, { action: 'dataCollectionCalls.getProjectById' })
         } finally {
           dispatch(setToMoveSectionIndex(false))
           dispatch(setLoading(false))

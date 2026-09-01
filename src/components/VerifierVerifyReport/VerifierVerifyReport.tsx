@@ -45,6 +45,7 @@ import {
   setSuccessFunction,
 } from '../../redux/Slices/blockchainStatusModalSlice'
 import { BLOCKCHAIN_STATUS } from '../../config/constants.config'
+import { handleApiError } from '../../utils/errorHandler'
 
 declare let window: any
 
@@ -146,7 +147,7 @@ const VerifierVerifyReport = (props: VerifierVerifyReportProps) => {
         console.log('pdf', location)
         setpdfURL(pdfObjectURL)
       } catch (err) {
-        console.log('Error in fileUploadCalls.getFile api : ', err)
+        handleApiError(err, { action: 'fileUploadCalls.getFile' })
       } finally {
         setPDFLoading(false)
       }

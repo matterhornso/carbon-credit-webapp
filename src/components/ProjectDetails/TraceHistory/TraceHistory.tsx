@@ -9,6 +9,7 @@ import { Colors, Images } from '../../../theme'
 import { getLocalItem } from '../../../utils/Storage'
 import TraceDetails from './TraceDetails'
 import './TraceHistory.css'
+import { handleApiError } from '../../../utils/errorHandler'
 interface TraceHistoryProps {
   projectId?: any
 }
@@ -88,10 +89,7 @@ const TraceHistory: FC<TraceHistoryProps> = (props) => {
         setTraceTabList(filterArray)
         setLoading(false)
       })
-      .catch((error) => {
-        console.log('error', error)
-        setLoading(false)
-      })
+      .catch((error) => handleApiError(error, { action: 'TraceHistory:91' }))
   }
   return (
     <Grid

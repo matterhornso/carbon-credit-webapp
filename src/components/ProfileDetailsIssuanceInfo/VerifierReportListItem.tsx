@@ -35,6 +35,7 @@ import {
 } from '../../redux/Slices/blockchainStatusModalSlice'
 import { pathNames } from '../../routes/pathNames'
 import { useNavigate } from 'react-router-dom'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface VerifierReportListItemListItemProps {
   data: any
@@ -75,7 +76,7 @@ const VerifierReportListItemListItem: FC<
       const userResponse = await USER.getUsersById(verifierId)
       setVerifierDetails(userResponse?.data)
     } catch (err) {
-      console.log('Error in USER.getUsersById api :', err)
+      handleApiError(err, { action: 'USER.getUsersById' })
     } finally {
       setLoading(false)
     }

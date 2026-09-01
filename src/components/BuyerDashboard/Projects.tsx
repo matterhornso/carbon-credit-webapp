@@ -10,6 +10,7 @@ import ApprovalChip from '../../atoms/ApprovalChip/ApprovalChip'
 import LimitedText from '../../atoms/LimitedText/LimitedText'
 import EmptyComponent from '../../atoms/EmptyComponent/EmptyComponent'
 import { buyerCalls } from '../../api/buyerCalls.api'
+import { handleApiError } from '../../utils/errorHandler'
 let headerIndex = 0
 const heading = [
   <LimitedText key={headerIndex++} text={'Reference ID'} />,
@@ -111,7 +112,7 @@ const Projects = () => {
         alert('Something went wrong!')
       }
     } catch (err) {
-      console.log('Error in marketplaceCalls.getPurchasedProject api ~ ', err)
+      handleApiError(err, { action: 'marketplaceCalls.getPurchasedProject' })
     } finally {
       setLoading(false)
     }

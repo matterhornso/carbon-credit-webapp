@@ -18,7 +18,7 @@ const PddDashboardTableActionOptions = ({ uuid }: any) => {
   const handleViewReport = () => {
     setShowProjectReportMenu(false)
     dispatch(setSectionIndex(3))
-    navigate(pathNames.CREATE_NEW_PROJECT, { state: { uuid } })
+    navigate(pathNames.ORIGINATION_NEW, { state: { uuid } })
   }
 
   const deleteProject = async () => {

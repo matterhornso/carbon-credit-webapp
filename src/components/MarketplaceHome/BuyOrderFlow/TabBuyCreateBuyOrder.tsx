@@ -20,6 +20,7 @@ import {
 } from '../../../redux/Slices/Marketplace/marketplaceBuyFlowSlice'
 // import { createBuyOrder } from '../../../utils/Marketplace/marketplaceBuyFlow.util'
 import { useMarketplaceBuy } from '../../../hooks/useMarketPlaceBuy'
+import { handleApiError } from '../../../utils/errorHandler'
 
 const TabBuyCreateBuyOrder = () => {
   const dispatch = useAppDispatch()
@@ -88,7 +89,7 @@ const TabBuyCreateBuyOrder = () => {
         setTokenAndUnitPriceList(tokenAndUnitPrice)
       }
     } catch (err) {
-      console.log('Error in marketplaceCalls.checkForFullFillOrder api :', err)
+      handleApiError(err, { action: 'marketplaceCalls.checkForFullFillOrder' })
     }
   }
 

@@ -51,6 +51,7 @@ import {
   setSecondaryText,
   setSuccessFunction,
 } from '../../redux/Slices/blockchainStatusModalSlice'
+import { handleApiError } from '../../utils/errorHandler'
 
 const SelectVerifier = () => {
   const { getProjectDetails } = useProject()
@@ -102,7 +103,7 @@ const SelectVerifier = () => {
         setVerifiers(verifiersWithAllDetailsFilled)
       }
     } catch (err) {
-      console.log('Error in department.getUsersByOrgType ~ ', err)
+      handleApiError(err, { action: 'department.getUsersByOrgType' })
     } finally {
       setLoading(false)
     }

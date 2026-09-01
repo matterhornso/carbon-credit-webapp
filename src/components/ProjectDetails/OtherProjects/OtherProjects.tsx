@@ -5,6 +5,7 @@ import { dataCollectionCalls } from '../../../api/dataCollectionCalls'
 import { pathNames } from '../../../routes/pathNames'
 import ProjectDetailsCard from './ProjectDetailsCard'
 import ProjectDetailsCardSkeleton from './ProjectDetailsCardSkeleton'
+import { handleApiError } from '../../../utils/errorHandler'
 
 const projects = ['', '', '', '']
 
@@ -29,7 +30,7 @@ const OtherProjects = () => {
         setProjects(filterProject)
       }
     } catch (e) {
-      console.log('Error in dataCollectionCalls.getAllProjects api ~ ', e)
+      handleApiError(e, { action: 'dataCollectionCalls.getAllProjects' })
     } finally {
       setLoading(false)
     }

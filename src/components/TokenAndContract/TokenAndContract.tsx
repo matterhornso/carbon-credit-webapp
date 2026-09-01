@@ -11,6 +11,7 @@ import { dataCollectionCalls } from '../../api/dataCollectionCalls'
 import { getLocalItem } from '../../utils/Storage'
 import moment from 'moment'
 import CCTableSkeleton from '../../atoms/CCTableSkeleton'
+import { handleApiError } from '../../utils/errorHandler'
 
 const TokenAndContract = () => {
   const navigate = useNavigate()
@@ -35,9 +36,7 @@ const TokenAndContract = () => {
           alert(res?.error[0])
         }
       })
-      .catch((e) => {
-        console.log(e)
-      })
+      .catch((e) => handleApiError(e, { action: 'TokenAndContract:38' }))
       .finally(() => {
         setLoading(false)
       })

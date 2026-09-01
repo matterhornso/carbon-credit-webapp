@@ -6,6 +6,7 @@ import Arrow from '../../../assets/Images/Icons/arrow-circle.svg'
 import { useAppSelector } from '../../../hooks/reduxHooks'
 import { shallowEqual } from 'react-redux'
 import { fileUploadCalls } from '../../../api/fileUpload.api'
+import { handleApiError } from '../../../utils/errorHandler'
 const SliderComponent = (props: any) => {
   const onWebApp = useAppSelector(({ app }) => !app.throughIFrame, shallowEqual)
   const { projectData } = props
@@ -37,10 +38,7 @@ const SliderComponent = (props: any) => {
         setSlideList(arr)
       }
     } catch (error) {
-      console.log(
-        '🚀 ~ file: SliderComponent.tsx ~ line 59 ~ getImages ~ error',
-        error
-      )
+      handleApiError(error, { action: 'SliderComponent.tsx' })
     } finally {
       setLoading(false)
     }

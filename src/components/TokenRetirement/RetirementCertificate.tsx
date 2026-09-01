@@ -11,6 +11,7 @@ import LimitedText from '../../atoms/LimitedText/LimitedText'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import { Colors } from '../../theme'
 import { getLocalItem } from '../../utils/Storage'
+import { handleApiError } from '../../utils/errorHandler'
 
 let index = 0
 const headings = [
@@ -67,7 +68,7 @@ const RetirementCertificate = () => {
   //         setRetireTokenList(rows)
   //       }
   //     })
-  //     .catch((err) => console.log(err))
+  //     .catch((err) => handleApiError(err, { action: 'RetirementCertificate:71' }))
   //     .finally(() => {
   //       setLoading(false)
   //     })
@@ -119,7 +120,7 @@ const RetirementCertificate = () => {
         setRetireTokenList(rows)
       }
     } catch (e) {
-      console.log('Error in buyerCalls.getRetirements api ~ ', e)
+      handleApiError(e, { action: 'buyerCalls.getRetirements' })
     } finally {
       setLoading(false)
     }

@@ -30,6 +30,7 @@ import { setAllBankDetailsList } from '../../redux/Slices/allBankDetailsSlice'
 import Spinner from '../../atoms/Spinner'
 import { getLocalItem } from '../../utils/Storage'
 import LoderOverlay from '../LoderOverlay'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface BankDetailsProps {}
 
@@ -64,10 +65,7 @@ const BankDetails: FC<BankDetailsProps> = (props) => {
 
         dispatch(setAllBankDetailsList(res?.data))
       })
-      .catch((error) => {
-        console.log('error', error)
-        setLoading(false)
-      })
+      .catch((error) => handleApiError(error, { action: 'BankDetails:67' }))
   }, [])
   const onChangeInput = (e: any, key: any, value: any) => {
     const addAccountDetails = { ...BankDetailsData }
@@ -82,10 +80,7 @@ const BankDetails: FC<BankDetailsProps> = (props) => {
         dispatch(setAllBankDetailsList(res?.data))
         setLoading(false)
       })
-      .catch((error) => {
-        console.log('error', error)
-        setLoading(false)
-      })
+      .catch((error) => handleApiError(error, { action: 'BankDetails:85' }))
   }
 
   const onSaveAccountDetails = () => {
@@ -215,10 +210,7 @@ const BankDetails: FC<BankDetailsProps> = (props) => {
         setLoading(false)
         getAllBankAccount()
       })
-      .catch((error) => {
-        console.log('error', error)
-        setLoading(false)
-      })
+      .catch((error) => handleApiError(error, { action: 'BankDetails:218' }))
   }
 
   if (loading) {

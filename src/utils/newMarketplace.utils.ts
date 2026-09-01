@@ -36,6 +36,7 @@ import {
   setWithdrawLoading,
 } from '../redux/Slices/newMarketplaceSlice'
 import { store } from '../redux/store'
+import { handleApiError } from './errorHandler'
 
 export const getProjectsTokenDetails = async (projectUUID: string) => {
   try {
@@ -49,7 +50,7 @@ export const getProjectsTokenDetails = async (projectUUID: string) => {
       store.dispatch(setINRTokenAddress(res?.data?.INR_token_address))
     }
   } catch (err) {
-    console.log('Error in eventsCalls.getTokenByProjectUUID api ~ ', err)
+    handleApiError(err, { action: 'eventsCalls.getTokenByProjectUUID' })
   } finally {
     store.dispatch(setProjectsTokenLoading(false))
   }
@@ -67,10 +68,7 @@ export const getTokenBalances = async (userID: string, assetID: string) => {
       return res
     }
   } catch (err) {
-    console.log(
-      'Error in transactionCalls.getAccountAndExchangeDetails api ~ ',
-      err
-    )
+    handleApiError(err, { action: 'transactionCalls.getAccountAndExchangeDetails' })
   } finally {
     store.dispatch(setTokenBalanceLoading(false))
   }
@@ -91,7 +89,7 @@ export async function getSellOrdersListData() {
       store.dispatch(setSellOrdersList(ordersList))
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.getSellOrder api : ', err)
+    handleApiError(err, { action: 'marketplaceCalls.getSellOrder' })
   } finally {
     store.dispatch(setSellOrdersLoading(false))
   }
@@ -161,7 +159,7 @@ export const createSellOrder = async () => {
       )
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.createOrder api ~ ', err)
+    handleApiError(err, { action: 'marketplaceCalls.createOrder' })
   } finally {
     store.dispatch(setCreateSellOrderLoading(false))
   }
@@ -237,7 +235,7 @@ export const createBuyOrder = async () => {
       )
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.fillOrder api ~ ', err)
+    handleApiError(err, { action: 'marketplaceCalls.fillOrder' })
   } finally {
     store.dispatch(setCreateBuyOrderLoading(false))
   }
@@ -256,7 +254,7 @@ export const getOpenOrders = async () => {
       }
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.getOpenOrder api ~ ', err)
+    handleApiError(err, { action: 'marketplaceCalls.getOpenOrder' })
   } finally {
     store.dispatch(setOpenOrdersLoading(false))
   }
@@ -271,7 +269,7 @@ export async function getBuyOrders() {
       store.dispatch(setBuyOrders(buyOrderRes?.data?.buyOrder))
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.getBuyOrder api : ', err)
+    handleApiError(err, { action: 'marketplaceCalls.getBuyOrder' })
   } finally {
     store.dispatch(setBuyOrdersLoading(false))
   }
@@ -303,7 +301,7 @@ export const cancelOrder = async (payload: any) => {
       store.dispatch(setINRTokenAddress(''))
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.cancelOrder api ~ ', err)
+    handleApiError(err, { action: 'marketplaceCalls.cancelOrder' })
   } finally {
     store.dispatch(setCancelOrderLoading(false))
   }
@@ -365,7 +363,7 @@ export const withdraw = async () => {
       store.dispatch(setINRTokenAddress(''))
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.withdraw api ~ ', err)
+    handleApiError(err, { action: 'marketplaceCalls.withdraw' })
   } finally {
     store.dispatch(setWithdrawLoading(false))
   }

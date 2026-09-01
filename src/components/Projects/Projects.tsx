@@ -108,7 +108,7 @@ const Projects = () => {
     dispatch(setCurrentProjectDetails(null))
     dispatch(setSectionIndex(0))
     dispatch(setSubSectionIndex(0))
-    navigate(pathNames.CREATE_NEW_PROJECT)
+    navigate(pathNames.ORIGINATION_NEW)
   }
 
   return (

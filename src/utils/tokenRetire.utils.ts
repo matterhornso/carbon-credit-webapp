@@ -5,6 +5,7 @@ import {
   setTokensApprovedForRetiring,
 } from '../redux/Slices/tokenRetireSlice'
 import { store } from '../redux/store'
+import { handleApiError } from './errorHandler'
 
 export async function getTokensBalance() {
   const accountAddress = store.getState()?.wallet?.accountAddress
@@ -21,7 +22,7 @@ export async function getTokensBalance() {
       }
     }
   } catch (err) {
-    console.log('error', err)
+    handleApiError(err, { action: 'tokenRetire.utils.getTokensBalance' })
   }
 }
 export async function getApprovedTokensBalance() {
@@ -40,7 +41,7 @@ export async function getApprovedTokensBalance() {
         )
       }
     } catch (err) {
-      console.log('Error in getting buyer allowance :', err)
+      handleApiError(err, { action: 'getting buyer allowance' })
     }
   }
 }

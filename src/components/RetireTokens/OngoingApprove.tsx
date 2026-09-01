@@ -13,6 +13,7 @@ import { limitTitleFromMiddle } from '../../utils/commonFunctions'
 import { getLocalItem, setLocalItem } from '../../utils/Storage'
 import { ethers } from 'ethers'
 import CCButton from '../../atoms/CCButton'
+import { handleApiError } from '../../utils/errorHandler'
 declare let window: any
 
 const provider =
@@ -93,10 +94,7 @@ const OngoingApprove = (props: any) => {
         return { res, success }
       }
     } catch (error) {
-      console.log(
-        'Error in transactionCalls.getTransactionByUser api : ',
-        error
-      )
+      handleApiError(error, { action: 'transactionCalls.getTransactionByUser' })
     }
   }
 
@@ -114,7 +112,7 @@ const OngoingApprove = (props: any) => {
         }
       }
     } catch (err) {
-      console.log('Error ', err)
+      handleApiError(err, { action: 'OngoingApprove.checkForPendingTransactions', silent: true })
     }
   }
   return (

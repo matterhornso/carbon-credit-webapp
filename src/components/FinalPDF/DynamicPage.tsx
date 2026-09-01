@@ -2,7 +2,6 @@ import { Box, Divider, Typography } from '@mui/material'
 import React from 'react'
 import { Images } from '../../theme'
 import { getLocalItem } from '../../utils/Storage'
-import GPTResponseParser from '../GenerateProjectWithAIComp/PDDContent/GPTAssistant/GPTResponseParser'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import LocationImages from './LocationImages'
 

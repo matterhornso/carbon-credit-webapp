@@ -13,6 +13,7 @@ import {
   TOKEN_CONTRACT_ADDRESS,
 } from '../config/token.config'
 import { getLocalItem } from '../utils/Storage'
+import { handleApiError } from '../utils/errorHandler'
 
 declare let window: any
 
@@ -215,7 +216,7 @@ const BlockchainCalls = {
       const res = await window.ethereum.request({ method, params })
       return res
     } catch (e) {
-      console.log('Error in Blockchain.ts - requestMethodCalls :', e)
+      handleApiError(e, { action: 'Blockchain.ts' })
     }
   },
   toHexConvert: (number: any) => ethers.utils.hexlify(number),

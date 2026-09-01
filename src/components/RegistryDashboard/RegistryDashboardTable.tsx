@@ -152,7 +152,7 @@ const RegistryDashboardTable = ({ loading }: any) => {
                   },
                 }}
                 onClick={() => {
-                  navigate(pathNames.REGISTRY_PDF_REVIEW, {
+                  navigate(pathNames.REGISTRY_REVIEW_REPORT, {
                     state: { uuid: item?.uuid },
                   })
                 }}

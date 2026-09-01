@@ -18,6 +18,7 @@ import ProfileCompletion from '../Projects/ProfileCompletion'
 import ProjectsStats from '../ProjectStats/ProjectsStats'
 import MarketplaceCard from './MarketplaceCard'
 import Projects from './Projects'
+import { handleApiError } from '../../utils/errorHandler'
 
 const BuyerDashboard = () => {
   const navigate = useNavigate()
@@ -54,7 +55,7 @@ const BuyerDashboard = () => {
         dispatch(setUserDetails(userRes?.data?.data))
       }
     } catch (err) {
-      console.log('Error in USER.getUserInfo api ~ ', err)
+      handleApiError(err, { action: 'USER.getUserInfo' })
     }
   }
 

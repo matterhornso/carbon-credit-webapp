@@ -267,7 +267,7 @@ const ListOfProjectsDashboard: FC<ListOfProjectsDashboardProps> = (props) => {
               },
             }}
             onClick={() => {
-              navigate(pathNames.CREATE_NEW_PROJECT, {
+              navigate(pathNames.ORIGINATION_NEW, {
                 state: { uuid: item?.uuid },
               })
             }}

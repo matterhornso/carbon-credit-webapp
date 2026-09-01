@@ -18,6 +18,7 @@ import { shallowEqual, useDispatch } from 'react-redux'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import { setCachedVerifierDashboardProject } from '../../redux/Slices/cachingSlice'
 import lodash from 'lodash'
+import { handleApiError } from '../../utils/errorHandler'
 
 const VerifierProjectsList = (props: VerifierProjectsListProps) => {
   const navigate = useNavigate()
@@ -49,9 +50,7 @@ const VerifierProjectsList = (props: VerifierProjectsListProps) => {
           dispatch(setCachedVerifierDashboardProject(response?.data))
         }
       })
-      .catch((e) => {
-        console.log(e)
-      })
+      .catch((e) => handleApiError(e, { action: 'VerifierProjectsList:52' }))
       .finally(() => {
         setLoading(false)
       })

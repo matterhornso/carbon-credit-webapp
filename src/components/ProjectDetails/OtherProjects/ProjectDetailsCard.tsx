@@ -20,6 +20,7 @@ import { setCacheBannerImages } from '../../../redux/Slices/marketPlaceCachingSl
 import CircleIcon from '@mui/icons-material/Circle'
 import { getEditorBlockData } from '../../../utils/editor.util'
 import { PROJECT_STATUS_FILTER } from '../../../config/projectDraft.config'
+import { handleApiError } from '../../../utils/errorHandler'
 
 interface ProjectDetailsCardProps {
   project: any
@@ -53,7 +54,7 @@ const ProjectDetailsCard: FC<ProjectDetailsCardProps> = (props) => {
         setBannerImage(URL.createObjectURL(res))
       }
     } catch (e) {
-      console.log(e)
+      handleApiError(e, { action: 'ProjectDetailsCard.getImage' })
     }
   }
 

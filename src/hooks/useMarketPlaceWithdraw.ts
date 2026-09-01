@@ -22,6 +22,7 @@ import { setLocalItem } from '../utils/Storage'
 // } from './marketplace.util'
 import { useAppDispatch, useAppSelector } from './reduxHooks'
 import { useMarketPlace } from './useMarketPlace'
+import { handleApiError } from '../utils/errorHandler'
 
 export const useMarketPlaceWithdraw = ()=>{
     const dispatch = useAppDispatch()
@@ -94,7 +95,7 @@ export const useMarketPlaceWithdraw = ()=>{
             }
           }
         } catch (err) {
-          console.log('Error in marketplaceCalls.withdraw api : ' + err)
+          handleApiError(err, { action: 'marketplaceCalls.withdraw' })
         } finally {
           dispatch(setMarketplaceLoading(false))
         }

@@ -11,6 +11,7 @@ import { shallowEqual } from 'react-redux'
 import BuyToken from './BuyToken'
 import { fileUploadCalls } from '../../../api/fileUpload.api'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
+import { handleApiError } from '../../../utils/errorHandler'
 interface ProjectIntroductionProps {
   projectDetailsData?: any
   projectData?: any
@@ -65,7 +66,7 @@ const ProjectIntroduction = (props: ProjectIntroductionProps) => {
       const res = await fileUploadCalls.getFile(projectDetailsData?.projectImg)
       setBannerImage(URL.createObjectURL(res))
     } catch (e) {
-      console.log(e)
+      handleApiError(e, { action: 'ProjectIntroduction.getFile' })
     }
   }
 

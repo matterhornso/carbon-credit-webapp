@@ -18,13 +18,12 @@ const CreateNewProjectBtn = () => {
   const dispatch = useAppDispatch()
 
   const createNewProject = () => {
-    // dispatch(resetGPTAssistanceConversationSlice())
-    // dispatch(resetGenerateProjectWithAISlice())
-    // navigate(pathNames.GENERATE_PROJECT_WITH_AI)
     dispatch(setCurrentProjectDetails(null))
     dispatch(setSectionIndex(0))
     dispatch(setSubSectionIndex(0))
-    navigate(pathNames.CREATE_NEW_PROJECT)
+    // Points at the Origination flow, which replaced the legacy
+    // CREATE_NEW_PROJECT PDD-authoring wizard (removed).
+    navigate(pathNames.ORIGINATION_NEW)
   }
 
   return (

@@ -31,6 +31,7 @@ import { KeyboardArrowLeft } from '@mui/icons-material'
 import { useComment } from '../../hooks/useComment'
 import PdfPage from '../../pages/PdfPage/PdfPage'
 import { getInitialLetter } from '../../utils/commonFunctions'
+import { handleApiError } from '../../utils/errorHandler'
 
 const ReviewAndComment = () => {
   const location: any = useLocation()
@@ -142,7 +143,7 @@ const ReviewAndComment = () => {
 
         setpdfURL(pdfObjectURL)
       } catch (err) {
-        console.log('Error in fileUploadCalls.getFile api : ', err)
+        handleApiError(err, { action: 'fileUploadCalls.getFile' })
       } finally {
         setPDFLoading(false)
       }

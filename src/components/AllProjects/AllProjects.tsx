@@ -27,6 +27,7 @@ import {
 } from '../../config/projectDraft.config'
 import { ProjectDraftCalls } from '../../api/projectDraftCalls.api'
 import AllProjectsFiltersTabs from './AllProjectsFiltersTabs'
+import { handleApiError } from '../../utils/errorHandler'
 
 const AllProjects = () => {
   const dispatch = useAppDispatch()
@@ -112,7 +113,7 @@ const AllProjects = () => {
         dispatch(setCachingAllProjects(res?.data))
       }
     } catch (err) {
-      console.log('error: ', err)
+      handleApiError(err, { action: 'AllProjects.getAllProjects' })
     } finally {
       setLoading(false)
     }

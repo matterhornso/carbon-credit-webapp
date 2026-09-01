@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import VerraPDFLoader from './VerraStaticDesignPages/VerraPDFLoader'
 import VerraPDF from './VerraPDF'
 import { pseudoPDF } from '../../api/pseudoPDF.api'
+import { handleApiError } from '../../utils/errorHandler'
 
 function FinalPDF() {
   const userDetails = getLocalItem('userDetails')
@@ -74,7 +75,7 @@ function FinalPDF() {
         dispatch(setPdfCoverPageData(res))
       }
     } catch (error) {
-      console.error('Error in getting PDF Cover page data:', error)
+      handleApiError(error, { action: 'getting PDF Cover page data' })
     } finally {
       setPdfCoverPageDataLoader(false)
     }

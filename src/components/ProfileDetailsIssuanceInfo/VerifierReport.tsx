@@ -61,6 +61,7 @@ import {
   setPrimaryText,
   setSecondaryText,
 } from '../../redux/Slices/blockchainStatusModalSlice'
+import { handleApiError } from '../../utils/errorHandler'
 
 interface VerifierReportListProps {
   //data?: any
@@ -245,7 +246,7 @@ const VerifierReport: FC<VerifierReportListProps> = (props) => {
           }
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => handleApiError(err, { action: 'VerifierReport:248' }))
       .finally(() => {
         setLoading(false)
       })
@@ -284,7 +285,7 @@ const VerifierReport: FC<VerifierReportListProps> = (props) => {
           }
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => handleApiError(err, { action: 'VerifierReport:287' }))
       .finally(() => {
         setVerifierLoading(false)
       })

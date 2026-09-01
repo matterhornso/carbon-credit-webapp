@@ -26,6 +26,7 @@ import { setPddDashboardCacheTableData } from '../../redux/Slices/pddDashboardCa
 import { setSectionIndex } from '../../redux/Slices/CreateNewProject/createNewProjectSectionSlice'
 import RenderSDG from '../../atoms/RenderSDGS/RenderSDGS'
 import { applySelectedFiltersOnDashboardData } from '../../utils/dashboard.util'
+import { handleApiError } from '../../utils/errorHandler'
 
 let index = 0
 const dashboardTableHeadings = [
@@ -75,7 +76,7 @@ const PddDashboardTable = () => {
         alert('Some issue in fetching the projects details')
       }
     } catch (e) {
-      console.log('error in getting all projects' + e)
+      handleApiError(e, { action: 'getting all projects' })
     } finally {
       setLoading(false)
     }
@@ -229,7 +230,7 @@ const PddDashboardTable = () => {
                 // navigate(pathNames.CREATE_NEW_PROJECT, {
                 //   state: { uuid: item?.uuid },
                 // })
-                navigate(pathNames.GENERATE_PROJECT_WITH_AI, {
+                navigate(pathNames.ORIGINATION_NEW, {
                   state: { uuid: item?.uuid, existingProject: true },
                 })
               }}

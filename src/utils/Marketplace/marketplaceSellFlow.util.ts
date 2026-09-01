@@ -37,6 +37,7 @@ import {
   checkBlockchainTransactionComplete,
   getHashAndVRS,
 } from './marketplace.util'
+import { handleApiError } from '../errorHandler'
 
 export async function getWalletBalance() {
   const accountAddress = store.getState()?.wallet?.accountAddress
@@ -53,7 +54,7 @@ export async function getWalletBalance() {
         store.dispatch(setWalletBal(bal))
       }
     } catch (err) {
-      console.log(err)
+      handleApiError(err, { action: 'marketplaceSellFlow.util.getWalletBalance' })
     }
   }
 }
@@ -70,7 +71,7 @@ export async function getBalanceOnExchange() {
       const bigNumExchangeBal = ethers.BigNumber.from(exchangeBal)
       store.dispatch(setExchangeBal(bigNumExchangeBal.toNumber()))
     } catch (err) {
-      console.log(err)
+      handleApiError(err, { action: 'marketplaceSellFlow.util.getBalanceOnExchange' })
     }
   }
 }
@@ -91,7 +92,7 @@ export async function getApprovedTokensBalance() {
         console.log('bigNumExchangeBal', bigNumExchangeBal.toNumber())
       }
     } catch (err) {
-      console.log(err)
+      handleApiError(err, { action: 'marketplaceSellFlow.util.getApprovedTokensBalance' })
     }
   }
 }
@@ -184,7 +185,7 @@ export async function depositERC20() {
       alert(depositERC20Res?.error)
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.depositERC20 api : ' + err)
+    handleApiError(err, { action: 'marketplaceCalls.depositERC20' })
   } finally {
     store.dispatch(setMarketplaceLoading(false))
   }
@@ -256,7 +257,7 @@ export async function createSellOrder() {
       }
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.createOrder api : ' + err)
+    handleApiError(err, { action: 'marketplaceCalls.createOrder' })
   } finally {
     store.dispatch(setMarketplaceLoading(false))
   }
@@ -288,7 +289,7 @@ export async function getSellOrdersListData() {
       store.dispatch(setSellOrdersList(sellOrderRes?.data?.reverse()))
     }
   } catch (err) {
-    console.log('Error in marketplaceCalls.getSellOrder api : ', err)
+    handleApiError(err, { action: 'marketplaceCalls.getSellOrder' })
   } finally {
     store.dispatch(setSellOrdersLoading(false))
   }
