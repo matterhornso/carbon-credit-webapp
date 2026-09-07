@@ -52,7 +52,7 @@ export const originationApi = {
       payload
     ).then((res) => res?.data)
   },
-  generateAll: (payload: { projectId: string }) => {
+  generateAll: (payload: { projectId: string; onlyMissing?: boolean }) => {
     return AxiosHelper(URL_PATH.generation.generateAll, 'POST', payload).then(
       (res) => res?.data
     )

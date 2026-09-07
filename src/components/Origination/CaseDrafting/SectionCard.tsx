@@ -43,7 +43,11 @@ function computeConfidence(section: any): 'high' | 'medium' | 'needs_review' {
   const hasUnverified = citations.some(
     (c) => c.source === 'source_document' && c.verified === false
   )
-  if (section.status === 'not_started' || section.status === 'ai_drafting') {
+  if (
+    section.status === 'not_started' ||
+    section.status === 'ai_drafting' ||
+    section.status === 'generation_failed'
+  ) {
     return 'needs_review'
   }
   if (warnings.length > 0 || hasUnverified) return 'needs_review'
@@ -125,6 +129,12 @@ const SectionCard: React.FC<SectionCardProps> = ({
         />
       </Stack>
 
+      {section.lastError && (
+        <Alert severity="error" sx={{ mt: 1 }}>
+          Generation failed: {section.lastError}
+        </Alert>
+      )}
+
       {(section.warnings || []).length > 0 && (
         <Stack spacing={0.5} sx={{ mt: 1 }}>
           {section.warnings.map((w: string, i: number) => (
@@ -135,7 +145,7 @@ const SectionCard: React.FC<SectionCardProps> = ({
         </Stack>
       )}
 
-      {section.status !== 'not_started' && (
+      {section.status !== 'not_started' && section.content && (
         <Typography
           variant="body2"
           sx={{
@@ -201,7 +211,11 @@ const SectionCard: React.FC<SectionCardProps> = ({
       <Stack direction="row" spacing={1} alignItems="center">
         <Button
           size="small"
-          variant={section.status === 'not_started' ? 'contained' : 'outlined'}
+          variant={
+            section.status === 'not_started' || section.status === 'generation_failed'
+              ? 'contained'
+              : 'outlined'
+          }
           disabled={generating}
           startIcon={generating ? <CircularProgress size={14} /> : undefined}
           onClick={(e) => {
@@ -209,7 +223,11 @@ const SectionCard: React.FC<SectionCardProps> = ({
             onGenerate()
           }}
         >
-          {section.status === 'not_started' ? 'Generate (g)' : 'Regenerate (g)'}
+          {section.status === 'not_started'
+            ? 'Generate (g)'
+            : section.status === 'generation_failed'
+            ? 'Retry (g)'
+            : 'Regenerate (g)'}
         </Button>
         {section.status === 'draft_ready' && (
           <Button

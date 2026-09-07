@@ -115,12 +115,15 @@ const CaseDrafting: React.FC<CaseDraftingProps> = ({ onAllSectionsFinalized }) =
     [projectId, caseDocument, dispatch]
   )
 
-  const handleGenerateAll = async () => {
+  // onlyMissing resumes a partially failed run: the backend skips sections that
+  // already produced content, so retrying after a rate limit costs only the
+  // sections still outstanding rather than the whole case again.
+  const handleGenerateAll = async (onlyMissing = false) => {
     if (!projectId) return
     setGeneratingAll(true)
     setError(null)
     try {
-      const result = await originationApi.generateAll({ projectId })
+      const result = await originationApi.generateAll({ projectId, onlyMissing })
       dispatch(setCaseDocument(result?.data))
     } catch (err: any) {
       setError(err?.response?.data?.error || 'Could not generate the full case.')
@@ -161,6 +164,12 @@ const CaseDrafting: React.FC<CaseDraftingProps> = ({ onAllSectionsFinalized }) =
     orderedSections.length > 0 &&
     orderedSections.every((s: any) => s.status === 'finalized')
 
+  // A run can now complete partially, so the page has to be able to say which
+  // sections did not make it rather than silently looking finished.
+  const failedSections = orderedSections.filter(
+    (s: any) => s.status === 'generation_failed' || s.lastError
+  )
+
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
@@ -169,7 +178,7 @@ const CaseDrafting: React.FC<CaseDraftingProps> = ({ onAllSectionsFinalized }) =
           variant="contained"
           disabled={generatingAll}
           startIcon={generatingAll ? <CircularProgress size={16} /> : undefined}
-          onClick={handleGenerateAll}
+          onClick={() => handleGenerateAll(false)}
         >
           Generate full case
         </Button>
@@ -183,6 +192,26 @@ const CaseDrafting: React.FC<CaseDraftingProps> = ({ onAllSectionsFinalized }) =
       {error && (
         <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError(null)}>
           {error}
+        </Alert>
+      )}
+
+      {failedSections.length > 0 && (
+        <Alert
+          severity="warning"
+          sx={{ mb: 2 }}
+          action={
+            <Button
+              size="small"
+              disabled={generatingAll}
+              onClick={() => handleGenerateAll(true)}
+            >
+              Retry {failedSections.length}
+            </Button>
+          }
+        >
+          {failedSections.length} section{failedSections.length === 1 ? '' : 's'} did not
+          generate: {failedSections.map((s: any) => s.key.replace(/_/g, ' ')).join(', ')}.
+          Retrying regenerates only these.
         </Alert>
       )}
 
