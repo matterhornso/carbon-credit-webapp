@@ -1,6 +1,7 @@
 node_modules
-npm-debug.log
 build
+coverage
+logs
+*.log
 .git
-*.md
-.gitignore
+.env.local
