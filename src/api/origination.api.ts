@@ -80,6 +80,12 @@ export const originationApi = {
       payload
     ).then((res) => res?.data)
   },
+  getJob: (jobId: string) => {
+    return AxiosHelper(
+      URL_PATH.generation.getJob + `?jobId=${jobId}`,
+      'GET'
+    ).then((res: any) => res?.data)
+  },
   getCaseDocument: (projectId: string) => {
     return AxiosHelper(
       URL_PATH.generation.getCaseDocument +

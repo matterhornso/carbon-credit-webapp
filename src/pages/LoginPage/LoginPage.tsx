@@ -533,7 +533,7 @@ const Login = () => {
                   fontWeight: '500',
                 }}
               >
-                {`Don't have an account?`}
+                {`Need access?`}
               </Typography>
               {/* <Typography
                 onClick={() => navigate(pathNames.REGISTER)}
@@ -562,31 +562,24 @@ const Login = () => {
               >
                 {`here`}
               </Typography> */}
-              <Box>
-                <CCButton
-                  // fullWidth=
-                  type="submit"
-                  onClick={() => navigate(pathNames.REGISTER)}
-                  sx={{
-                    height: '62px',
-                    width: '462px',
-                    borderRadius: '8px !important',
-                    marginTop: '6px !important',
-                    boxShadow: '0px 4px 6px 0px rgba(29, 74, 67, 0.15)',
-                    border: '1px solid #01623D !important',
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    marginBottom: '20px !important',
-                    backgroundColor: '#FAFDFA',
-                    '&:hover': {
-                      background: '#006B5E14',
-                    },
-                  }}
-                  variant="contained"
-                >
-                  Register
-                </CCButton>
-              </Box>
+              {/* The Register button was removed rather than repointed: there is
+                  no registration screen (pathNames.REGISTER is routed nowhere,
+                  so the button navigated back to this page), and the HTTP
+                  createUser path requires blockchain and encryption fields
+                  serviced by components that are not deployed. Accounts are
+                  provisioned directly. Restore this once self-service signup
+                  actually exists. */}
+              <Typography
+                sx={{
+                  textAlign: 'center',
+                  fontSize: 14,
+                  fontWeight: '500',
+                  marginBottom: '20px',
+                  color: Colors.textColorDarkGreen,
+                }}
+              >
+                Accounts are provisioned by your administrator.
+              </Typography>
             </Box>
           </Box>
           </>

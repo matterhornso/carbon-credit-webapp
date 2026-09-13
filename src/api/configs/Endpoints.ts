@@ -238,6 +238,7 @@ export const URL_PATH = {
     refineSection: ENDPOINTS.carbonServiceURL + '/generation/refineSection',
     updateSection: ENDPOINTS.carbonServiceURL + '/generation/updateSection',
     getCaseDocument: ENDPOINTS.carbonServiceURL + '/generation/getCaseDocument',
+    getJob: ENDPOINTS.carbonServiceURL + '/generation/getJob',
     generateCoverNote: ENDPOINTS.carbonServiceURL + '/generation/generateCoverNote',
   },
   attachment: {

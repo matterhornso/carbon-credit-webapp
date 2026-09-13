@@ -118,15 +118,42 @@ const CaseDrafting: React.FC<CaseDraftingProps> = ({ onAllSectionsFinalized }) =
   // onlyMissing resumes a partially failed run: the backend skips sections that
   // already produced content, so retrying after a rate limit costs only the
   // sections still outstanding rather than the whole case again.
+  //
+  // generateAll now enqueues rather than generating inline, so this polls the
+  // job instead of waiting on one long request. The run continues server-side
+  // whether or not this page stays open — closing the tab no longer kills it.
   const handleGenerateAll = async (onlyMissing = false) => {
     if (!projectId) return
     setGeneratingAll(true)
     setError(null)
     try {
-      const result = await originationApi.generateAll({ projectId, onlyMissing })
-      dispatch(setCaseDocument(result?.data))
+      const queued = await originationApi.generateAll({ projectId, onlyMissing })
+      const jobId = queued?.data?.jobId
+      if (!jobId) throw new Error('The server did not return a job to track.')
+
+      // Generation is minutes of sequential model calls; poll rather than hold
+      // a request open. The ceiling stops a stuck job polling forever.
+      const startedAt = Date.now()
+      const TIMEOUT_MS = 15 * 60 * 1000
+      for (;;) {
+        await new Promise((resolve) => setTimeout(resolve, 3000))
+        const job = await originationApi.getJob(jobId)
+        const status = job?.data?.status
+        if (status === 'succeeded') break
+        if (status === 'failed') {
+          throw new Error(job?.data?.lastError || 'Generation failed on the server.')
+        }
+        if (Date.now() - startedAt > TIMEOUT_MS) {
+          throw new Error(
+            'Generation is still running after 15 minutes. It continues in the background — reopen this project to check.'
+          )
+        }
+      }
+
+      const refreshed = await originationApi.getCaseDocument(projectId)
+      dispatch(setCaseDocument(refreshed?.data))
     } catch (err: any) {
-      setError(err?.response?.data?.error || 'Could not generate the full case.')
+      setError(err?.response?.data?.error || err?.message || 'Could not generate the full case.')
     } finally {
       setGeneratingAll(false)
     }
