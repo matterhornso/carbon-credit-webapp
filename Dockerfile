@@ -12,6 +12,18 @@ RUN mkdir -p ./node_modules/pdfmake/build
 COPY examples/vfs_fonts.js ./node_modules/pdfmake/build/vfs_fonts.js
 
 COPY . ./
+
+# create-react-app inlines REACT_APP_* at build time, and a Docker build does
+# not inherit the environment around it — a variable set on the service is
+# invisible here unless it is declared as a build argument. Without these the
+# build silently falls back to the committed .env.production, which points at a
+# host that no longer answers.
+ARG REACT_APP_BASE_URL
+ARG REACT_APP_ENVIRONMENT
+ENV REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
+ENV REACT_APP_ENVIRONMENT=${REACT_APP_ENVIRONMENT}
+RUN echo "building against API base: ${REACT_APP_BASE_URL:-(unset - will fall back to .env.production)}"
+
 # CI=false because create-react-app treats warnings as errors when CI is set,
 # and this codebase carries thousands of pre-existing lint warnings. TypeScript
 # errors still fail the build, so this hides nothing that breaks at runtime.
