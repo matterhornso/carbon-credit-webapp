@@ -43,6 +43,7 @@ export const URL_PATH = {
     selectMethodology: ENDPOINTS.carbonServiceURL + '/project/selectMethodology',
     submitIntake: ENDPOINTS.carbonServiceURL + '/project/submitIntake',
     checkApplicability: ENDPOINTS.carbonServiceURL + '/project/checkApplicability',
+    evidenceGaps: ENDPOINTS.carbonServiceURL + '/project/evidenceGaps',
     transition: ENDPOINTS.carbonServiceURL + '/project/transition',
     updateTx: ENDPOINTS.carbonServiceURL + '/project/updateTx',
     getIssuerProjectDashboardStats:

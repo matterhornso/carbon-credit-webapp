@@ -17,6 +17,7 @@ import { originationApi } from '../../api/origination.api'
 import { setCurrentProject } from '../../redux/Slices/Origination/projectSlice'
 import IntakeForm from './IntakeForm/IntakeForm'
 import CaseDrafting from './CaseDrafting/CaseDrafting'
+import EvidenceGaps from './EvidenceGaps/EvidenceGaps'
 import Review from './Review/Review'
 import Export from './Export/Export'
 
@@ -59,6 +60,9 @@ const OriginationWizard: React.FC = () => {
   const currentProject = useAppSelector((s) => s.originationProject.currentProject)
 
   const [reviewApproved, setReviewApproved] = useState(false)
+  // Bumped when intake is submitted so the gap report re-checks against what
+  // was just supplied rather than showing a stale answer.
+  const [gapRefresh, setGapRefresh] = useState(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -158,10 +162,19 @@ const OriginationWizard: React.FC = () => {
       </Stepper>
 
       {step === 'intake' && (
-        <IntakeForm onIntakeSubmitted={() => {/* status flips to INPUTS_SUBMITTED; wizard re-derives on next currentProject update */}} />
+        <>
+          {/* Shown above the form rather than after submission: the point is to
+              say what will be needed before the developer commissions surveys
+              or engages a validator, not to report it once they are committed. */}
+          <EvidenceGaps projectId={currentProject?._id} refreshKey={gapRefresh} />
+          <IntakeForm onIntakeSubmitted={() => setGapRefresh((n) => n + 1)} />
+        </>
       )}
       {step === 'drafting' && (
-        <CaseDrafting onAllSectionsFinalized={() => setReviewApproved(true)} />
+        <>
+          <EvidenceGaps projectId={currentProject?._id} refreshKey={gapRefresh} />
+          <CaseDrafting onAllSectionsFinalized={() => setReviewApproved(true)} />
+        </>
       )}
       {step === 'review' && (
         <Box>
