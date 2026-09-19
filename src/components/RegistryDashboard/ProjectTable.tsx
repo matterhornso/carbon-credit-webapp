@@ -29,11 +29,6 @@ import { getTextAccordingToStatus } from '../../utils/commonFunctions'
 import { getLocalItem } from '../../utils/Storage'
 import { registryCalls } from '../../api/registry.api'
 import { SDGSLIST } from '../../config/constants.config'
-import {
-  setSectionIndex as setMonthlyReportSectionIndex,
-  setSubSectionIndex,
-  setMainProjectDetails,
-} from '../../redux/Slices/MonthlyReportUpdate'
 
 let index = 0
 const draftHeadings: any = [
@@ -391,11 +386,6 @@ const ProjectTable: FC<ProjectTableProps> = ({ loading }) => {
             },
           }
         )
-      } else if (redirect === 'Monthly') {
-        dispatch(setMonthlyReportSectionIndex(0))
-        dispatch(setSubSectionIndex(0))
-        dispatch(setMainProjectDetails(projectDetails))
-        navigate(pathNames.MONTHLY_REPORT_UPDATE)
       } else if (redirect === 'Verify') {
         navigate(pathNames.SELECT_VERIFIER)
       }

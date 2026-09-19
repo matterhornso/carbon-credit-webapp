@@ -60,18 +60,6 @@ export const URL_PATH = {
     resubmitPDF: ENDPOINTS.carbonServiceURL + '/project/resubmit',
     getProjectPDFs: ENDPOINTS.carbonServiceURL + '/project/getReports',
   },
-  projectSections: {
-    updateProjectSectionA:
-      ENDPOINTS.carbonServiceURL + '/projectSectionA/update',
-    updateProjectSectionB:
-      ENDPOINTS.carbonServiceURL + '/projectSectionB/update',
-    updateProjectSectionC:
-      ENDPOINTS.carbonServiceURL + '/projectSectionC/update',
-    updateProjectSectionD:
-      ENDPOINTS.carbonServiceURL + '/projectSectionD/update',
-    updateProjectSectionE:
-      ENDPOINTS.carbonServiceURL + '/projectSectionE/update',
-  },
   verifier: {
     create: ENDPOINTS.carbonServiceURL + '/verifier/create',
     update: ENDPOINTS.carbonServiceURL + '/verifier/update',

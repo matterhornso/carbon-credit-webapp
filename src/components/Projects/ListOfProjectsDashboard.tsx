@@ -17,11 +17,6 @@ import TabSelector from '../../atoms/TabSelector/TabSelector'
 import NoData from '../../atoms/NoData/NoData'
 import CCTableSkeleton from '../../atoms/CCTableSkeleton'
 import { pathNames } from '../../routes/pathNames'
-import {
-  setSectionIndex as setMonthlyReportSectionIndex,
-  setSubSectionIndex,
-  setMainProjectDetails,
-} from '../../redux/Slices/MonthlyReportUpdate'
 import { PROJECT_ALL_STATUS } from '../../config/constants.config'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import CCTable from '../../atoms/CCTable'
@@ -180,11 +175,6 @@ const ListOfProjectsDashboard: FC<ListOfProjectsDashboardProps> = (props) => {
             },
           }
         )
-      } else if (redirect === 'Monthly') {
-        dispatch(setMonthlyReportSectionIndex(0))
-        dispatch(setSubSectionIndex(0))
-        dispatch(setMainProjectDetails(projectDetails))
-        navigate(pathNames.MONTHLY_REPORT_UPDATE)
       } else if (redirect === 'Verify') {
         navigate(pathNames.SELECT_VERIFIER)
       }

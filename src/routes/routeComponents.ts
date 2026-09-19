@@ -13,7 +13,6 @@ import SelectRegistry from '../pages/SelectRegistry/SelectRegistry'
 // import Marketplace from '../pages/Marketplace/Marketplace'
 // import MarketplaceHome from '../pages/MarketplaceHome'
 // import MarketplaceProjectDetails from '../pages/MarketplaceProjectDetails'
-// import MonthlyReportUpdate from '../pages/MonthlyReportUpdate'
 // import Onboarding from '../pages/OnboardingOld'
 // import OrganisationalDetails from '../pages/OrganisationalDetails'
 // import Profile from '../pages/Profile'
@@ -61,9 +60,6 @@ const Marketplace = loadable(() => import('../pages/Marketplace/Marketplace'))
 const MarketplaceHome = loadable(() => import('../pages/MarketplaceHome'))
 const MarketplaceProjectDetails = loadable(
   () => import('../pages/MarketplaceProjectDetails')
-)
-const MonthlyReportUpdate = loadable(
-  () => import('../pages/MonthlyReportUpdate')
 )
 const Onboarding = loadable(() => import('../pages/OnboardingOld'))
 const OrganisationalDetails = loadable(
@@ -270,12 +266,6 @@ export const privateRouteComponents = [
     path: pathNames.BANK_DETAILS,
     component: BankDetails,
     roles: [ROLES.ISSUER, ROLES.BUYER],
-  },
-  {
-    path: pathNames.MONTHLY_REPORT_UPDATE,
-    component: MonthlyReportUpdate,
-
-    roles: [ROLES.ISSUER],
   },
   {
     path: pathNames.REPORT_VIEW_COMMENTS,

@@ -12,11 +12,6 @@ import { createSearchParams, useNavigate } from 'react-router-dom'
 import { setAdminDraftProjects } from '../../redux/Slices/Dashboard/dashboardSlice'
 import { SDGSLIST } from '../../config/constants.config'
 import { pathNames } from '../../routes/pathNames'
-import {
-  setSectionIndex as setMonthlyReportSectionIndex,
-  setSubSectionIndex,
-  setMainProjectDetails,
-} from '../../redux/Slices/MonthlyReportUpdate'
 import { Typography } from '@mui/material'
 import NoData from '../../atoms/NoData/NoData'
 import { ProjectDraftCalls } from '../../api/projectDraftCalls.api'
@@ -86,11 +81,6 @@ const ProjectTable: FC<ProjectTableProps> = ({ loading }) => {
             },
           }
         )
-      } else if (redirect === 'Monthly') {
-        dispatch(setMonthlyReportSectionIndex(0))
-        dispatch(setSubSectionIndex(0))
-        dispatch(setMainProjectDetails(projectDetails))
-        navigate(pathNames.MONTHLY_REPORT_UPDATE)
       } else if (redirect === 'Verify') {
         navigate(pathNames.SELECT_VERIFIER)
       }

@@ -31,13 +31,9 @@ import {
 } from '../../utils/newProject.utils'
 import CCButtonOutlined from '../../atoms/CCButtonOutlined'
 import { Colors } from '../../theme'
-import AddIcon from '@mui/icons-material/Add'
-import MonthlyReportUpdate, {
+import {
   setCurrentProjectDetails,
   setCurrentProjectDetailsUUID,
-  setMainProjectDetails,
-  setSectionIndex,
-  setSubSectionIndex,
 } from '../../redux/Slices/MonthlyReportUpdate'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import BlockchainCalls from '../../blockchain/Blockchain'
@@ -219,21 +215,7 @@ const VerifierReport: FC<VerifierReportListProps> = (props) => {
                   '-'
                 ),
                 i.project_status === PROJECT_ALL_STATUS.CREATED_PROJECT ? (
-                  <CCButton
-                    key={index}
-                    sx={{
-                      backgroundColor: Colors.darkPrimary1,
-                      padding: '8px 24px',
-                      minWidth: '50px',
-                      color: '#fff',
-                      borderRadius: 10,
-                      fontSize: 14,
-                      mr: 1,
-                    }}
-                    onClick={() => addMonthlyData(i, res?.data?.main_project)}
-                  >
-                    Resume
-                  </CCButton>
+                  '-'
                 ) : (
                   '-'
                 ),
@@ -252,15 +234,6 @@ const VerifierReport: FC<VerifierReportListProps> = (props) => {
       })
   }
 
-  const addMonthlyData = (item: any, main: any) => {
-    dispatch(setCurrentProjectDetails(item))
-    dispatch(setCurrentProjectDetailsUUID(item?.uuid))
-    dispatch(setMainProjectDetails(main))
-    dispatch(setSectionIndex(0))
-    dispatch(setSubSectionIndex(0))
-
-    navigate(pathNames.MONTHLY_REPORT_UPDATE)
-  }
 
   const getVerifierByProject = (showModalAfterGetCall = false) => {
     setVerifierLoading(true)
@@ -579,23 +552,6 @@ const VerifierReport: FC<VerifierReportListProps> = (props) => {
                   <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
                     Reports Submitted
                   </Typography>
-
-                  <CCButton
-                    variant="contained"
-                    sx={{
-                      backgroundColor: '#F3BA4D',
-                      textTransform: 'none',
-                      width: '150px',
-                      borderRadius: '100px',
-
-                      padding: '10px ',
-                      fontSize: '12px',
-                    }}
-                    startIcon={<AddIcon style={{ color: '#005046' }} />}
-                    onClick={() => addMonthlyData(null, mainProjectData)}
-                  >
-                    Add Monthly Data
-                  </CCButton>
                 </Grid>
                 <CCTable headings={headings} rows={monthlyReportsList} />
               </>

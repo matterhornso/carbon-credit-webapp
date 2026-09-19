@@ -31,10 +31,6 @@ import {
   setCurrentProjectDetailsUUID,
 } from '../../redux/Slices/issuanceDataCollection'
 import { pathNames } from '../../routes/pathNames'
-import {
-  setSectionIndex,
-  setSubSectionIndex,
-} from '../../redux/Slices/MonthlyReportUpdate'
 import ShortenedIDComp from '../../atoms/ShortenedIDComp.tsx/ShortenedIDComp'
 import { PROJECT_ALL_STATUS } from '../../config/constants.config'
 
@@ -88,10 +84,6 @@ const ListOfProjects: FC<ListOfProjectsProps> = (props) => {
             projectId: projectDetails?.uuid,
           })}`,
         })
-      } else if (redirect === 'Monthly') {
-        dispatch(setSectionIndex(0))
-        dispatch(setSubSectionIndex(0))
-        navigate(pathNames.MONTHLY_REPORT_UPDATE)
       } else if (redirect === 'Verify') {
         navigate(pathNames.SELECT_VERIFIER)
       }

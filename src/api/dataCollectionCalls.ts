@@ -21,51 +21,6 @@ export const dataCollectionCalls = {
       return res.data
     })
   },
-  updateProjectSectionACall: (payload: any) => {
-    return AxiosHelper(
-      URL_PATH.projectSections.updateProjectSectionA,
-      'POST',
-      payload
-    ).then((res: any) => {
-      return res.data
-    })
-  },
-  updateProjectSectionBCall: (payload: any) => {
-    return AxiosHelper(
-      URL_PATH.projectSections.updateProjectSectionB,
-      'POST',
-      payload
-    ).then((res: any) => {
-      return res.data
-    })
-  },
-  updateProjectSectionCCall: (payload: any) => {
-    return AxiosHelper(
-      URL_PATH.projectSections.updateProjectSectionC,
-      'POST',
-      payload
-    ).then((res: any) => {
-      return res.data
-    })
-  },
-  updateProjectSectionDCall: (payload: any) => {
-    return AxiosHelper(
-      URL_PATH.projectSections.updateProjectSectionD,
-      'POST',
-      payload
-    ).then((res: any) => {
-      return res.data
-    })
-  },
-  updateProjectSectionECall: (payload: any) => {
-    return AxiosHelper(
-      URL_PATH.projectSections.updateProjectSectionE,
-      'POST',
-      payload
-    ).then((res: any) => {
-      return res.data
-    })
-  },
   updateTx: (payload: any) => {
     return AxiosHelper(URL_PATH.project.updateTx, 'POST', payload).then(
       (res: any) => {
