@@ -24,7 +24,6 @@ const Help = () => {
   const open = Boolean(anchorEl)
 
   const handleClick = (item: any) => {
-    // if (location.pathname === pathNames.ISSUANCE_DATA_COLLECTION)
     //   setAnchorEl(event.currentTarget)
     dispatch(setShowPopUp(item))
   }

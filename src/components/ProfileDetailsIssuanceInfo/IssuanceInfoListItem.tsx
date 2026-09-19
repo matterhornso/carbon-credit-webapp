@@ -1,12 +1,7 @@
 import React, { FC } from 'react'
 import { Box, Grid, Typography } from '@mui/material'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CircleIcon from '@mui/icons-material/Circle'
-import { useAppDispatch } from '../../hooks/reduxHooks'
-import { setSectionIndex } from '../../redux/Slices/issuanceDataCollection'
-import { useNavigate } from 'react-router-dom'
-import { pathNames } from '../../routes/pathNames'
 
 interface IssuanceInfoListItemProps {
   data: any
@@ -15,13 +10,7 @@ interface IssuanceInfoListItemProps {
 }
 
 const IssuanceInfoListItem: FC<IssuanceInfoListItemProps> = (props) => {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
 
-  const moveToSection = (index: number) => {
-    dispatch(setSectionIndex(index))
-    navigate(pathNames.ISSUANCE_DATA_COLLECTION)
-  }
 
   return (
     <Grid
@@ -68,20 +57,6 @@ const IssuanceInfoListItem: FC<IssuanceInfoListItemProps> = (props) => {
           <Typography sx={{ fontSize: 14, fontWeight: 500 }}>
             {props?.data?.status}
           </Typography>
-        </Box>
-      </Grid>
-      <Grid item container xs={1} justifyContent="center">
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'end',
-            alignItems: 'end',
-          }}
-        >
-          <ChevronRightIcon
-            sx={{ fontSize: 28, color: '#7ACB9F', cursor: 'pointer' }}
-            onClick={() => moveToSection(props?.index)}
-          />
         </Box>
       </Grid>
     </Grid>

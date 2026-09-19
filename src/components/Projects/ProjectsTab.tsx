@@ -112,7 +112,7 @@ const ProjectsTab: FC<ProjectsTabProps> = (props) => {
   }
 
   const listNewProject = () => {
-    navigate(pathNames.ISSUANCE_DATA_COLLECTION)
+    navigate(pathNames.ORIGINATION_NEW)
     dispatch(setSectionIndex(0))
     dispatch(setSubSectionIndex(0))
   }

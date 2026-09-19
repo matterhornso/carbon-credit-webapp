@@ -5,8 +5,6 @@ import SelectRegistry from '../pages/SelectRegistry/SelectRegistry'
 // import BuyerOnboarding from '../pages/BuyerOnboarding'
 // import CompleteProfile from '../pages/CompleteProfile/CompleteProfile'
 // import HelpCentre from '../pages/HelpCentre/HelpCentre'
-// import IssuanceDataCollection from '../pages/IssuanceDataCollection'
-// import IssuanceDataCollectionHelp from '../pages/IssuanceDataCollectionHelp/IssuanceDataCollectionHelp'
 // import ProjectsPage from '../pages/Issuer/ProjectsPage/ProjectsPage'
 // import SelectVerifier from '../pages/Issuer/SelectVerifierPage/SelectVerifier'
 // import IssuerWallet from '../pages/IssuerWallet'
@@ -50,12 +48,6 @@ const CompleteProfile = loadable(
   () => import('../pages/CompleteProfile/CompleteProfile')
 )
 const HelpCentre = loadable(() => import('../pages/HelpCentre/HelpCentre'))
-const IssuanceDataCollection = loadable(
-  () => import('../pages/IssuanceDataCollection')
-)
-const IssuanceDataCollectionHelp = loadable(
-  () => import('../pages/IssuanceDataCollectionHelp/IssuanceDataCollectionHelp')
-)
 const ProjectsPage = loadable(
   () => import('../pages/Issuer/ProjectsPage/ProjectsPage')
 )
@@ -155,16 +147,6 @@ export const privateRouteComponents = [
     path: pathNames.ONBOARDING,
     component: Onboarding,
     roles: [ROLES.ISSUER],
-  },
-  {
-    path: pathNames.ISSUANCE_DATA_COLLECTION,
-    component: IssuanceDataCollection,
-    roles: [ROLES.ISSUER],
-  },
-  {
-    path: pathNames.ISSUANCE_DATA_COLLECTION_HELP,
-    component: IssuanceDataCollectionHelp,
-    roles: [ROLES.ISSUER, ROLES.REGISTRY],
   },
   {
     path: pathNames.PROFILE_DETAILS_ISSUANCE_INFO,

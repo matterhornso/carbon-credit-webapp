@@ -7,8 +7,6 @@ export const pathNames = {
   ACCOUNTCREATEDPAGE: '/account_created',
   ONBOARDING: '/onboarding',
   MAINTENANCE_PAGE: '/maintenance-page',
-  ISSUANCE_DATA_COLLECTION: '/issuance-data-collection',
-  ISSUANCE_DATA_COLLECTION_HELP: '/issuance-data-collection/help',
   PROFILE_DETAILS_ISSUANCE_INFO: '/profile-details-issuance-info',
   MARKETPLACE_OLD: '/marketplace-old',
   MARKETPLACE: '/marketplace',

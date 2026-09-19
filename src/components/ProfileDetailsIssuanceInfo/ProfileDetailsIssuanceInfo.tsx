@@ -189,10 +189,6 @@ const ProfileDetailsIssuanceInfo: FC = () => {
   //   }
   // }
   console.log('location:', projectDraftDetails)
-  const redirectOnSection = () => {
-    dispatch(setSectionIndex(1))
-    navigate(pathNames.ISSUANCE_DATA_COLLECTION)
-  }
 
   return (
     <Paper sx={{ borderRadius: '16px', p: '32px 24px' }}>

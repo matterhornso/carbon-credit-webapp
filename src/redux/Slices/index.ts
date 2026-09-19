@@ -23,7 +23,6 @@ import verifier from './verifierSlice'
 import reportsViewComments from './reportsViewCommentsSlice'
 import marketplace from './Marketplace/marketplaceSlice'
 import tokenRetire from './tokenRetireSlice'
-import issuanceDataCollectionHelp from './issuanceDataCollectionHelpSlice'
 import allBankDetailsSlice from './allBankDetailsSlice'
 import marketDepth from './Marketplace/marketDepthSlice'
 import marketplaceSellFlow from './Marketplace/marketplaceSellFlowSlice'
@@ -82,7 +81,6 @@ export default {
   reportsViewComments,
   marketplace,
   tokenRetire,
-  issuanceDataCollectionHelp,
   allBankDetailsSlice,
   marketDepth,
   marketplaceSellFlow,
