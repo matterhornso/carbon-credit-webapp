@@ -29,7 +29,7 @@ const ServiceDropdown = () => {
     <Box ref={ref} sx={{ position: 'relative' }}>
       <Box sx={{ display: 'flex', flexDirection: 'row', columnGap: 1 }}>
         <Box>
-          <img src={navbar_carbon_logo} />
+          <img src={navbar_carbon_logo} alt="" />
         </Box>
         <Box>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -43,7 +43,16 @@ const ServiceDropdown = () => {
               onClick={() => setOpenServicesList(true)}
             />
           </Box>
-          <Typography sx={{ color: '#868686', fontSize: 12, fontWeight: 400 }}>
+          {/* The description is a second line of branding; on a phone the header
+              has no room for it, and it pushed the account controls off screen. */}
+          <Typography
+            sx={{
+              color: '#868686',
+              fontSize: 12,
+              fontWeight: 400,
+              display: { xs: 'none', sm: 'block' },
+            }}
+          >
             {selectedServiceDesc}
           </Typography>
         </Box>

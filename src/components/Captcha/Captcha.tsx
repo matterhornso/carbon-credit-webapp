@@ -88,6 +88,8 @@ export default function Captcha({
         onChange={(e: any) => setCaptchaInput(e.target.value)}
         inputProps={{
           maxLength: 6,
+          'aria-label': 'Characters shown in the image',
+          autoComplete: 'off',
         }}
         showAdornment={false}
       />

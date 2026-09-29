@@ -57,7 +57,12 @@ export const getErrorMessage = (error: any, fallback = GENERIC): string => {
       /CastError|ValidationError|at\s+\w+\s+\(|node_modules|ObjectId/.test(
         candidate
       )
-    if (!looksInternal && candidate.length <= 200) return candidate
+    // A route that does not exist answers with the framework's own HTML error
+    // page ("<pre>Cannot POST /api/...</pre>"). It is short enough to pass the
+    // length check, and it was being shown to users tags and all.
+    const looksLikeMarkup = /<\/?[a-z!][^>]*>/i.test(candidate)
+    if (!looksInternal && !looksLikeMarkup && candidate.length <= 200)
+      return candidate
   }
 
   const status = error?.response?.status

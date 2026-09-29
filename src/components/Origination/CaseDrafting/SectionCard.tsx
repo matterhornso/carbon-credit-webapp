@@ -117,7 +117,15 @@ const SectionCard: React.FC<SectionCardProps> = ({
         cursor: 'pointer',
       }}
     >
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
+      {/* Wraps: on a narrow screen the status drops under the title instead of
+          pushing past the edge of the card. */}
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        flexWrap="wrap"
+        sx={{ gap: 1 }}
+      >
         <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
           {section.key.replace(/_/g, ' ')}
         </Typography>
@@ -125,7 +133,7 @@ const SectionCard: React.FC<SectionCardProps> = ({
           size="small"
           color={meta.color}
           icon={meta.icon}
-          label={`${meta.label} · ${section.status}`}
+          label={`${meta.label} · ${String(section.status || '').replace(/_/g, ' ')}`}
         />
       </Stack>
 

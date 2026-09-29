@@ -10,6 +10,8 @@ import {
   Stepper,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
@@ -55,6 +57,11 @@ const STEP_LABELS: Record<WizardStep, string> = {
 }
 
 const OriginationWizard: React.FC = () => {
+  // On a phone four labels do not fit on one line beside their icons, and the last
+  // step ran off the edge of the screen. Labels under the icons take a quarter
+  // of the width each.
+  const theme = useTheme()
+  const compactStepper = useMediaQuery(theme.breakpoints.down('sm'))
   const dispatch = useAppDispatch()
   const params = useParams<{ projectId?: string }>()
   const currentProject = useAppSelector((s) => s.originationProject.currentProject)
@@ -153,7 +160,11 @@ const OriginationWizard: React.FC = () => {
         {currentProject.name}
       </Typography>
 
-      <Stepper activeStep={Object.keys(STEP_LABELS).indexOf(step)} sx={{ mb: 4 }}>
+      <Stepper
+        alternativeLabel={compactStepper}
+        activeStep={Object.keys(STEP_LABELS).indexOf(step)}
+        sx={{ mb: 4 }}
+      >
         {Object.values(STEP_LABELS).map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

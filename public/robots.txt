@@ -1,3 +1,6 @@
-# https://www.robotstxt.org/robotstxt.html
+# The Climat web app. Nothing here is meant to be found through search: every page
+# carries a noindex directive, as a header and as a meta tag. Crawling is allowed so
+# that the directive can be read; a page that is blocked here can still be listed.
+# The public site, with the guides and the product pages, is https://climat.today/
 User-agent: *
-Disallow:
+Allow: /

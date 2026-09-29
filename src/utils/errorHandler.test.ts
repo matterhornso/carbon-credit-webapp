@@ -46,6 +46,25 @@ describe('getErrorMessage', () => {
     )
   })
 
+  it('never shows a framework error page, however short', () => {
+    // What Express answers for a route that does not exist. At about 150
+    // characters it passed the length check and was shown to users, tags and all.
+    const page =
+      '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot POST /api/v1/project-draft/getProjects</pre>\n</body>\n</html>\n'
+    expect(page.length).toBeLessThanOrEqual(200)
+    expect(getErrorMessage(axiosError(404, page))).toBe(
+      'That item could not be found.'
+    )
+    expect(
+      getErrorMessage(axiosError(502, '<html><body>Bad Gateway</body></html>'))
+    ).toBe('The server ran into a problem. Please try again.')
+  })
+
+  it('still shows a plain message that contains a comparison sign', () => {
+    expect(getErrorMessage(axiosError(400, { error: 'Start must be < end' })))
+      .toBe('Start must be < end')
+  })
+
   it('translates wallet rejections instead of showing provider strings', () => {
     expect(getErrorMessage({ code: 4001 })).toBe(
       'You cancelled the request in your wallet.'

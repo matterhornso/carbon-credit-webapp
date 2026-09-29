@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { shallowEqual } from 'react-redux'
 import {
   BrowserRouter,
@@ -25,12 +25,16 @@ import TwoFaPage from '../pages/TwoFa/TwoFaPage'
 import VerifierVerifyReport from '../pages/VerifierVerifyReport'
 import { getLocalItem } from '../utils/Storage'
 import { drawerExemptList, hybridPaths } from './config'
+import { applyRouteMeta } from './pageMeta'
 import { pathNames } from './pathNames'
 import { privateRouteComponents } from './routeComponents'
 
 const RouteController = ({ localLoggedIn }: any) => {
   const userData = useAppSelector((state: any) => state.auth.data, shallowEqual)
   const location = useLocation()
+  useEffect(() => {
+    applyRouteMeta(location.pathname)
+  }, [location.pathname])
   return (
     <Routes>
       {privateRouteComponents.map((route: any) => (

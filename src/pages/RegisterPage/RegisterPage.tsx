@@ -202,9 +202,12 @@ const RegisterPage = (props: RegisterPageProps) => {
       <Box
         sx={{
           width: {
+            xs: '100%',
             sm: '100%',
             lg: '50%',
           },
+          px: '20px',
+          boxSizing: 'border-box',
           overflow: 'scroll',
           display: 'flex',
           flexDirection: 'column',
@@ -217,7 +220,7 @@ const RegisterPage = (props: RegisterPageProps) => {
         <Box
           sx={{
             position: 'relative',
-            width: '462px',
+            width: '100%', maxWidth: '462px',
             marginTop: '49px',
           }}
         >
@@ -247,7 +250,7 @@ const RegisterPage = (props: RegisterPageProps) => {
           />
         </Box>
 
-        <Box sx={{ mt: '55px', width: '462px' }}>
+        <Box sx={{ mt: '55px', width: '100%', maxWidth: '462px' }}>
           <Typography
             sx={{ fontWeight: '400', fontSize: 32, color: '#029FB3' }}
           >
@@ -260,7 +263,7 @@ const RegisterPage = (props: RegisterPageProps) => {
 
         <Box
           sx={{
-            width: '462px',
+            width: '100%', maxWidth: '462px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -329,7 +332,7 @@ const RegisterPage = (props: RegisterPageProps) => {
           // error={email !== '' && !isEmail(email)}
           // helperText={email !== '' && !isEmail(email) && 'Enter valid Email ID'}
           defaultValue={email}
-          sx={{ width: '462px', mt: '24px' }}
+          sx={{ width: '100%', maxWidth: '462px', mt: '24px' }}
           clearFn={() => {
             setEmail('')
           }}
@@ -349,7 +352,7 @@ const RegisterPage = (props: RegisterPageProps) => {
             // placeholder='Participant Type'
             items={typeOptions}
             onChange={(e: any) => setSelectedRole(e.target.value)}
-            sx={{ width: '462px' }}
+            sx={{ width: '100%', maxWidth: '462px' }}
             fullWidth={false}
             size="small"
           />
@@ -357,7 +360,7 @@ const RegisterPage = (props: RegisterPageProps) => {
 
         <Box
           sx={{
-            width: '462px',
+            width: '100%', maxWidth: '462px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -438,7 +441,7 @@ const RegisterPage = (props: RegisterPageProps) => {
               </InputAdornment>
             ),
           }}
-          sx={{ width: '462px', mt: '24px' }}
+          sx={{ width: '100%', maxWidth: '462px', mt: '24px' }}
           showAdornment={showPasswordAdornment}
           onFocus={() => {
             setShowPasswordAdornment(true)
@@ -479,7 +482,7 @@ const RegisterPage = (props: RegisterPageProps) => {
               </InputAdornment>
             ),
           }}
-          sx={{ width: '462px', mt: '24px' }}
+          sx={{ width: '100%', maxWidth: '462px', mt: '24px' }}
           showAdornment={showPasswordAdornment}
         />
 
@@ -497,7 +500,7 @@ const RegisterPage = (props: RegisterPageProps) => {
           onClick={onBoardingNewUser}
           sx={{
             height: '62px',
-            width: '462px',
+            width: '100%', maxWidth: '462px',
             borderRadius: '8px !important',
             marginTop: '24px !important',
             background: 'linear-gradient(225deg, #01623D 0%, #8BD3DC 100%)',
@@ -561,7 +564,7 @@ const RegisterPage = (props: RegisterPageProps) => {
             onClick={() => navigate(pathNames.LOGIN)}
             sx={{
               height: '62px',
-              width: '462px',
+              width: '100%', maxWidth: '462px',
               borderRadius: '8px !important',
               marginTop: '10px !important',
               boxShadow: '0px 4px 6px 0px rgba(29, 74, 67, 0.15)',

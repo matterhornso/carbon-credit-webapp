@@ -228,6 +228,7 @@ const Login = () => {
       <Box
         sx={{
           width: {
+            xs: '100%',
             sm: '100%',
             lg: '50%',
           },
@@ -242,13 +243,20 @@ const Login = () => {
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ height: '100%', overflow: 'scroll' }}
+          sx={{
+            height: '100%',
+            overflow: 'scroll',
+            width: '100%',
+            maxWidth: '502px',
+            px: '20px',
+            boxSizing: 'border-box',
+          }}
           className="hide-scrollbar"
         >
           <Box
             sx={{
               position: 'relative',
-              width: '462px',
+              width: '100%', maxWidth: '462px',
               // height: '67px',
               marginTop: '64px',
               '@media (max-width:1440px)': {
@@ -278,7 +286,7 @@ const Login = () => {
             </Box> */}
           </Box>
 
-          <Box sx={{ mt: '87px', width: '462px' }}>
+          <Box sx={{ mt: '87px', width: '100%', maxWidth: '462px' }}>
             <Typography
               sx={{ fontWeight: '400', fontSize: 28, color: '#029FB3' }}
             >
@@ -315,6 +323,7 @@ const Login = () => {
                 label="Verification code"
                 variant="outlined"
                 name="otp"
+                autoComplete="one-time-code"
                 value={otpInput}
                 onChange={(e: any) => setOtpInput(e.target.value)}
                 onKeyDown={(e: any) => {
@@ -323,10 +332,10 @@ const Login = () => {
                     verifyOtp()
                   }
                 }}
-                sx={{ width: '462px', mt: '24px' }}
+                sx={{ width: '100%', maxWidth: '462px', mt: '24px' }}
               />
               {otpError && (
-                <Alert severity="info" sx={{ mt: 2, width: '462px' }}>
+                <Alert severity="info" sx={{ mt: 2, width: '100%', maxWidth: '462px' }}>
                   {otpError}
                 </Alert>
               )}
@@ -335,7 +344,7 @@ const Login = () => {
                 onClick={verifyOtp}
                 sx={{
                   height: '62px',
-                  width: '462px',
+                  width: '100%', maxWidth: '462px',
                   borderRadius: '8px !important',
                   marginTop: '24px !important',
                   background: 'linear-gradient(225deg, #01623D 0%, #8BD3DC 100%)',
@@ -348,7 +357,7 @@ const Login = () => {
               >
                 {loading ? 'Verifying...' : 'Verify'}
               </CCButton>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '462px', mt: 2 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '462px', mt: 2 }}>
                 <Typography
                   sx={{ fontSize: 14, cursor: 'pointer', color: Colors.textColorDarkGreen, fontWeight: '500' }}
                   onClick={() => {
@@ -385,9 +394,10 @@ const Login = () => {
               variant="outlined"
               type="email"
               name="email"
+              autoComplete="username"
               onChange={handleChange}
               sx={{
-                width: '462px',
+                width: '100%', maxWidth: '462px',
                 mt: '24px',
               }}
               defaultValue={values?.email}
@@ -398,7 +408,6 @@ const Login = () => {
               showAdornment={showEmailAdornment}
               onFocus={() => {
                 setShowEmailAdornment(true)
-                console.log('focused from comp')
               }}
               onBlur={() => {
                 setShowEmailAdornment(false)
@@ -408,6 +417,7 @@ const Login = () => {
               label="Password"
               variant="outlined"
               name="password"
+              autoComplete="current-password"
               onChange={(e: any) => {
                 handleChange(e)
                 setPwdCopy(e.target.value)
@@ -444,7 +454,7 @@ const Login = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ width: '462px', mt: '24px' }}
+              sx={{ width: '100%', maxWidth: '462px', mt: '24px' }}
               showAdornment={showPasswordAdornment}
             />
             <Box
@@ -504,7 +514,7 @@ const Login = () => {
               // onClick={() => login()}
               sx={{
                 height: '62px',
-                width: '462px',
+                width: '100%', maxWidth: '462px',
                 borderRadius: '8px !important',
                 marginTop: '24px !important',
                 background: 'linear-gradient(225deg, #01623D 0%, #8BD3DC 100%)',

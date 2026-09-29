@@ -342,8 +342,12 @@ export default function ResponsiveDrawer(props: any) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          p: { xs: 2, sm: 3 },
+          width: { xs: '100%', sm: `calc(100% - ${drawerWidth}px)` },
+          // A flex item will not shrink below the width of its widest child unless
+          // told it may. Without this, one long select label made every screen
+          // wider than a phone and the whole page scrolled sideways.
+          minWidth: 0,
         }}
       >
         <Toolbar />

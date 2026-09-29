@@ -77,9 +77,12 @@ const StepOneTwoFa = (props: TwoFaProps) => {
       <Box
         sx={{
           width: {
+            xs: '100%',
             sm: '100%',
             lg: '50%',
           },
+          px: '20px',
+          boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -93,7 +96,7 @@ const StepOneTwoFa = (props: TwoFaProps) => {
         <Box
           sx={{
             position: 'relative',
-            width: '462px',
+            width: '100%', maxWidth: '462px',
             // height: '67px',
             mt: '64px',
             // border: '1px solid lime',
@@ -126,7 +129,7 @@ const StepOneTwoFa = (props: TwoFaProps) => {
           />
         </Box>
 
-        <Box sx={{ mt: '151px', width: '462px' }}>
+        <Box sx={{ mt: '151px', width: '100%', maxWidth: '462px' }}>
           <Typography
             sx={{
               fontWeight: 400,
@@ -159,7 +162,7 @@ const StepOneTwoFa = (props: TwoFaProps) => {
             {'email id below. This code is valid for 90 secs.'}
           </Typography>
         </Box>
-        <Box sx={{ width: '462px', mt: '32px' }}>
+        <Box sx={{ width: '100%', maxWidth: '462px', mt: '32px' }}>
           <OtpInput
             value={otp}
             isInputNum
@@ -228,7 +231,7 @@ const StepOneTwoFa = (props: TwoFaProps) => {
           variant="contained"
           sx={{
             height: '62px',
-            width: '462px',
+            width: '100%', maxWidth: '462px',
             borderRadius: '8px !important',
             marginTop: '8px !important',
             background: 'linear-gradient(225deg, #01623D 0%, #8BD3DC 100%)',
